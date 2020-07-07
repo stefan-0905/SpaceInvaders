@@ -5,17 +5,14 @@
 #include "Player.h"
 #include "InvaderArmy.h"
 #include "Bullet.h"
+#include "Game.h"
+#include "SpaceInvaders.h"
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(1024, 512), "Space Invaders");
     window.setFramerateLimit(60);
-    sf::Texture DefenderTexture;
-    DefenderTexture.loadFromFile("res/defender.jpg");
 
-    sf::Texture InvaderTexture;
-    InvaderTexture.loadFromFile("res/invader.png");
-    
     sf::Font font;
     font.loadFromFile("fonts/micross.ttf");
 
@@ -24,13 +21,14 @@ int main()
     LifeText.setCharacterSize(20);
     LifeText.setFillColor(sf::Color::White);
 
-    Player Player(sf::Vector2f(76.f, 48.f), DefenderTexture, window.getSize());
-    InvaderArmy Army(30, 10, InvaderTexture);
+    Game m_Game(sf::Vector2f(76.f, 48.f), window.getSize());
 
-    int FireRate = 59;
+    float deltaTime = 0.f;
+    sf::Clock clock;
 
     while (window.isOpen())
     {
+        deltaTime = clock.restart().asSeconds();
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -38,49 +36,12 @@ int main()
                 window.close();
         }
 
-        // Move Invading Army Left - Right
-        Army.Move();
-        Army.Fire();
-
-        // Move Player And his assets - bullets
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-            Player.Move(Side::Left);
-        }
-
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            Player.Move(Side::Right);
-        }
-        Player.MoveBullets(Army);
-
-        // Fire player bullet
-        if (FireRate < 59) FireRate++;
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-        {
-            if (FireRate >= 59)
-            {
-                Player.Fire();
-                FireRate = 0;
-            }
-        }
-
+        m_Game.HandleMoving(deltaTime);
+        
         window.clear();
 
-        LifeText.setString(std::to_string(Player.HP) + "/" + std::to_string(Player.MaxHP));
-        LifeText.setPosition(window.getSize().x - LifeText.getGlobalBounds().width - 50.f, 10.f);
+        m_Game.HandleDrawing(window, LifeText);
 
-        if (!Player.CheckEnemyBulletCollision(Army))
-        {
-            printf("You lose!");
-            window.close(); //TODO Show Game Over message
-        }
-        else {
-            Player.Draw(window);
-            Army.Draw(window);
-        }
-
-        window.draw(LifeText);
         window.display();
     }
 }

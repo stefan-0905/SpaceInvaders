@@ -1,14 +1,14 @@
 #include "Player.h"
 
-Player::Player(const sf::Vector2f dim, const sf::Texture& texture, sf::Vector2u size)
+Player::Player(const sf::Vector2f dim)//, sf::Vector2u size)
 {
 	///Reserve memory locations for only 10 bullets 
 	Bullets.reserve(10);
 
 	///Init Player
-	Body.setTexture(texture);
+	//Body.setTexture(texture);
 	Body.setOrigin(sf::Vector2f(dim.x / 2, dim.y / 2));
-	Body.setPosition((float)size.x / 2, (float)size.y - Body.getGlobalBounds().height);
+	//Body.setPosition((float)size.x / 2, (float)size.y - Body.getGlobalBounds().height);
 
 	HP = MaxHP;
 }
@@ -52,7 +52,7 @@ void Player::Move(const Side side)
 
 void Player::MoveBullets(InvaderArmy& army)
 {
-	for (int i = 0; i < (int)Bullets.size(); i++)
+	for (unsigned int i = 0; i < Bullets.size(); i++)
 	{
 		Bullets[i].Move(1);
 
@@ -62,6 +62,8 @@ void Player::MoveBullets(InvaderArmy& army)
 			Bullets.erase(Bullets.begin() + i);
 			continue;
 		}
+
+		//TODO Maybe start counting from middle of height
 
 		/// Check if bulllet hit something
 		for (int k = 0; k < army.GetCount(); k++)
@@ -98,4 +100,15 @@ bool Player::CheckEnemyBulletCollision(InvaderArmy& army)
 	}
 
 	return HP;
+}
+
+void Player::SetPosition(float x, float y)
+{
+	Body.setPosition(x, y);
+}
+
+void Player::SetTexture()
+{
+	DefenderTexture.loadFromFile("res/defender.jpg");
+	Body.setTexture(DefenderTexture);
 }

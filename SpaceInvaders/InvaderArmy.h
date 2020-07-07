@@ -8,12 +8,12 @@
 class InvaderArmy
 {
 public:
-	InvaderArmy(int count, int InvadersPerRow, sf::Texture& texture);
+	InvaderArmy(int count, int InvadersPerRow);
 	~InvaderArmy();
 
 	void Draw(sf::RenderWindow& window);
 	void Move();
-	void Fire();
+	void Fire(float deltaTime);
 	void Kill(int position);
 	void DestroyBullet(int i);
 

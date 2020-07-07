@@ -8,7 +8,7 @@
 class Player
 {
 public:
-	Player(const sf::Vector2f dim, const sf::Texture& texture, sf::Vector2u size);
+	Player(const sf::Vector2f dim);
 	~Player();
 
 	void Draw(sf::RenderWindow& window);
@@ -16,6 +16,8 @@ public:
 	void MoveBullets(InvaderArmy& army);
 	void Fire();
 	bool CheckEnemyBulletCollision(InvaderArmy& army);
+	void SetPosition(float x, float y);
+	void SetTexture();
 
 	sf::Vector2f GetPosition() const { return Body.getPosition(); }
 	sf::Sprite& GetShape() { return Body; }
@@ -25,6 +27,7 @@ public:
 	unsigned int HP;
 private:
 	sf::Sprite Body;
+	sf::Texture DefenderTexture;
 	std::vector<Bullet> Bullets;
 
 };

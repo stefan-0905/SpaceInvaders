@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Invader.cpp" />
     <ClCompile Include="InvaderArmy.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -153,9 +154,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Invader.h" />
     <ClInclude Include="InvaderArmy.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SpaceInvaders.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

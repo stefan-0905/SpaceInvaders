@@ -2,7 +2,7 @@
 
 #include "InvaderArmy.h"
 
-InvaderArmy::InvaderArmy(int count, int invadersPerRow, sf::Texture& texture)
+InvaderArmy::InvaderArmy(int count, int invadersPerRow)
 	: Count(count), InvadersPerRow(invadersPerRow)
 {
 	Enemies.reserve(Count);
@@ -15,8 +15,7 @@ InvaderArmy::InvaderArmy(int count, int invadersPerRow, sf::Texture& texture)
 	{
 		if (i % InvadersPerRow == 0)
 			Row++;
-
-		Enemies.emplace_back(Invader(sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f), texture));
+		Enemies.emplace_back(Invader(sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f)));
 	}
 }
 
@@ -67,16 +66,12 @@ void InvaderArmy::Move()
 	}
 }
 
-void InvaderArmy::Fire()
+void InvaderArmy::Fire(float deltaTime)
 {
-	static int FireRate = 60;
-	static int currentFrame = 0;
+	static float totalTime = 0.f;
+	totalTime += deltaTime;
 
-	if (currentFrame < FireRate)
-	{
-		currentFrame++;
-		return;
-	}
+	if (totalTime < 1.f) return;
 
 	/// Get random column for the bullet
 	int column = rand() % InvadersPerRow;
@@ -93,7 +88,7 @@ void InvaderArmy::Fire()
 			sf::Vector2f invaderPosition = Enemies[row * InvadersPerRow + column].GetPosition();
 			invaderPosition.y += 50;
 			Bullets.emplace_back(Bullet(invaderPosition));
-			currentFrame = 0;
+			totalTime -= 1;
 			break;
 		}
 		else 
@@ -102,7 +97,6 @@ void InvaderArmy::Fire()
 		}
 	} while (row >= 0);
 
-	currentFrame++;
 }
 
 void InvaderArmy::Kill(int position)

@@ -1,11 +1,14 @@
 #include "Invader.h"
 
-Invader::Invader(sf::Vector2f position, sf::Texture& texture)
+Invader::Invader(sf::Vector2f position)
 {
+	InvaderTexture = new sf::Texture();
 	Left = true;
-	body.setTexture(texture);
+	InvaderTexture->loadFromFile("res/invader.png");
+	//body.setTexture(texture);
 	body.setOrigin(sf::Vector2f(25.f, 19.f));
 	body.setPosition(position);
+	SetTexture();
 }
 
 void Invader::Draw(sf::RenderWindow& window)
@@ -28,4 +31,13 @@ void Invader::Move(Side side)
 	default:
 		break;
 	}
+}
+
+void Invader::SetTexture()
+{
+	//if(body.getTexture() == nullptr)
+		
+	/*InvaderTexture.loadFromFile("res/invader.png");*/
+
+	body.setTexture(*InvaderTexture);
 }
