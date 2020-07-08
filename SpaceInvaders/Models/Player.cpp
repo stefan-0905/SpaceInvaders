@@ -69,7 +69,7 @@ void Player::MoveBullets(InvaderArmy& army)
 			if (!army.GetEnemies()[k]->Killed && Bullets[i].Intersects((army.GetEnemies()[k])->GetShape()))
 			{
 				Bullets.erase(Bullets.begin() + i);
-				army.Kill(k);
+				army.Injure(k);
 				break;
 			}
 		}

@@ -28,7 +28,7 @@ public:
 		m_Ship = *ship;
 		m_Ship.SetSize(shipSize);
 		m_Ship.SetPosition(shipPosition.x, shipPosition.y);
-	
+
 		HP = m_Ship.GetMaxHP();
 	}
 

@@ -15,11 +15,11 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void Move();
 	void Fire(float deltaTime);
-	void Kill(int position);
+	void Injure(int position);
 	void DestroyBullet(int i);
 	void Reset();
 
-	Enemy** GetEnemies() { return Enemies1; }
+	Killable** GetEnemies() { return Enemies1; }
 	std::vector<Bullet>* GetBullets() { return &Bullets; }
 	int GetCount() const { return Count; }
 
@@ -29,7 +29,7 @@ private:
 
 	std::vector<Bullet> Bullets;
 	
-	Enemy** Enemies1;
+	Killable** Enemies1;
 
 	//Count of enemies
 	unsigned int Count;

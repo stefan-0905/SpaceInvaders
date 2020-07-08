@@ -9,7 +9,7 @@ InvaderArmy::InvaderArmy(int count, int invadersPerRow)
 	Bullets.reserve(InvadersPerRow);
 
 	//Enemies1.reserve(Count);
-	Enemies1 = new Enemy*[Count];
+	Enemies1 = new Killable*[Count];
 
 	sf::Vector2f startingPos = sf::Vector2f(1024.f / 2 - InvadersPerRow / 2 * 50, 50.f);
 
@@ -25,14 +25,14 @@ InvaderArmy::InvaderArmy(int count, int invadersPerRow)
 		//Enemies.emplace_back(Invader(sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f)));
 		switch (Row)
 		{
-		case 1:
-			Enemies1[i] = new Invader1(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
+		case 3:
+			Enemies1[i] = new Invader3(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
 			break;
 		case 2:
 			Enemies1[i] = new Invader2(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
 			break;
-		case 3:
-			Enemies1[i] = new Invader3(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
+		case 1:
+			Enemies1[i] = new Invader1(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
 			break;
 		default:
 			break;
@@ -122,13 +122,13 @@ void InvaderArmy::Fire(float deltaTime)
 
 }
 
-void InvaderArmy::Kill(int position)
+void InvaderArmy::Injure(int position)
 {
 	/// Set invader on specified position as killed
 	for (unsigned int i = 0; i < Count; i++)
 	{
 		if (i == position) {
-			Enemies1[i]->Killed = true;
+			Enemies1[i]->Hurt();
 		}
 	}
 }
@@ -142,11 +142,11 @@ void InvaderArmy::Reset()
 {
 	for (unsigned int i = 0; i < Count; i++)
 	{
-		Enemies1[i]->Killed = false;
+		Enemies1[i]->Reset();
 	}
 
 	for (unsigned int i = 0; i < Bullets.size(); i++)
 	{
-		Bullets.erase(Bullets.begin() + i);
+		DestroyBullet(i);
 	}
 }

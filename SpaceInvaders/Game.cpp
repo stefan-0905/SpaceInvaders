@@ -19,7 +19,6 @@ Game::~Game()
 {
 }
 
-
 void Game::HandleMoving(float deltaTime)
 {
     if (State != GameState::Playing) return;

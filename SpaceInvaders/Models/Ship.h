@@ -7,19 +7,22 @@ enum class Side {
 	Left = 0, Right
 };
 
-class Enemy
+class Killable
 {
 public:
+	unsigned int HP;
 	bool Killed = false;
+	virtual void Reset() = 0;
+	virtual void Hurt() = 0;
 	virtual void Move(Side side) = 0;
 	virtual sf::Vector2f GetPosition() const = 0;
 	virtual sf::RectangleShape& GetShape() = 0;
 	virtual void Draw(sf::RenderWindow& window) = 0;
-	virtual ~Enemy() {};
+	virtual ~Killable() {};
 };
 
 
-class Ship : public Enemy
+class Ship : public Killable
 {
 protected:
 	sf::RectangleShape Body;
@@ -35,6 +38,19 @@ public:
 		Body.setOrigin(width / 2, height / 2);
 	};
 
+	virtual void Reset() override
+	{
+		Killed = false;
+		HP = MaxHP;
+	}
+
+	virtual void Hurt() override
+	{
+		--HP;
+		if (HP == 0)
+			Killed = true;
+	}
+
 	void SetPosition(float x, float y) 
 	{
 		Body.setPosition(x, y);
@@ -45,7 +61,7 @@ public:
 		window.draw(Body);
 	}
 
-	void Move(float x, float y)
+	virtual void Move(float x, float y)
 	{
 		Body.move(x, y);
 	}
@@ -55,16 +71,16 @@ public:
 		Body.setSize(sf::Vector2f(newSize.width, newSize.height));
 	}
 
-	void Move(Side side) override
+	virtual void Move(Side side) override
 	{
 		float moveWidth = 1.f;
 		switch (side)
 		{
 		case Side::Left:
-			Body.move(-moveWidth, 0.f);
+			Move(-moveWidth, 0.f);
 			break;
 		case Side::Right:
-			Body.move(moveWidth, 0.f);
+			Move(moveWidth, 0.f);
 			break;
 		default:
 			break;
@@ -86,6 +102,7 @@ public:
 		: Ship(width, height)
 	{
 		MaxHP = 5;
+		HP = MaxHP;
 		FireSpeed = 0.5f;
 
 		Body.setTexture(&Config::GetSlingerTexture());
@@ -99,6 +116,7 @@ public:
 		: Ship(width, height)
 	{
 		MaxHP = 10;
+		HP = MaxHP;
 		FireSpeed = 1.f;
 
 		Body.setTexture(&Config::GetBazookerTexture());
