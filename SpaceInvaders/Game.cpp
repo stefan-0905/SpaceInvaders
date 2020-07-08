@@ -3,7 +3,7 @@
 #include "Config.h"
 
 Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
-    : m_Player(sf::Vector2f(76.f, 48.f)), Army(30, 10), Font(Config::GetFont())
+    : m_Player(sf::Vector2f(76.f, 48.f)), Army(20, 10), Font(Config::GetFont())
 {
     State = GameState::StartScreen;
 
@@ -24,9 +24,6 @@ void Game::HandleMoving(float deltaTime)
 {
     if (State != GameState::Playing) return;
 
-    /*static float totalTime = 1.f;
-    totalTime += deltaTime;*/
-
     // Move Invading Army Left - Right
     Army.Move();
     Army.Fire(deltaTime);
@@ -43,22 +40,10 @@ void Game::HandleMoving(float deltaTime)
     }
     m_Player.MoveBullets(Army);
 
-    // Fire player bullet
-    /*if (sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        if (totalTime >= 1.f)
-        {
-            m_Player.Fire();
-            totalTime -= 1.f;
-        }
-    }*/
 }
 
 void Game::Fire(float& deltaTime)
 {
-    //static float totalTime = 1.f;
-    //totalTime += deltaTime;
-    //printf("%f \n", totalTime);
     if (deltaTime >= m_Player.GetFireRate())
     {
         m_Player.Fire();
@@ -99,7 +84,7 @@ void Game::DrawPlaying(sf::RenderWindow& window)
         Army.Draw(window);
     }
 
-    HpText.setString(std::to_string(m_Player.HP) + "/" + std::to_string(m_Player.GetMaxHP()));
+    HpText.setString("Lives:" + std::to_string(m_Player.HP) + "/" + std::to_string(m_Player.GetMaxHP()));
     HpText.setPosition(window.getSize().x - 100.f - 50.f, 10.f);
 
     window.draw(HpText);
@@ -146,4 +131,5 @@ void Game::RestartGame()
 {
     Army.Reset();
     m_Player.HP = m_Player.GetMaxHP();
+    m_Player.CleanBullets();
 }

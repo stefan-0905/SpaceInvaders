@@ -1,6 +1,6 @@
 #pragma once
-#include "Player.h"
-#include "InvaderArmy.h"
+#include "Models\Player.h"
+#include "Models\InvaderArmy.h"
 #include "OverUI.h"
 #include "CharacterSelectUI.h"
 #include "StartScreenUI.h"

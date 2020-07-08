@@ -2,9 +2,9 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "Player.h"
-#include "InvaderArmy.h"
-#include "Bullet.h"
+#include "Models\Player.h"
+#include "Models\InvaderArmy.h"
+#include "Models\Bullet.h"
 #include "Game.h"
 #include "SpaceInvaders.h"
 
@@ -15,17 +15,17 @@ int main()
 
     Game m_Game(sf::Vector2f(76.f, 48.f), window.getSize());
 
-    float deltaTime = 0.f;
-    float deltaT = 0.f;
+    float deltaTimeForEachFrame = 0.f;
+    float deltaTimeWhenUserTriesToFire = 0.f;
     sf::Clock clock;
 
     while (window.isOpen())
     {
-        deltaTime = clock.restart().asSeconds();
-        deltaT += deltaTime;
+        deltaTimeForEachFrame = clock.restart().asSeconds();
+        deltaTimeWhenUserTriesToFire += deltaTimeForEachFrame;
         sf::Event event;
         
-        m_Game.HandleMoving(deltaTime);
+        m_Game.HandleMoving(deltaTimeForEachFrame);
         window.clear();
 
         while (window.pollEvent(event))
@@ -44,7 +44,7 @@ int main()
             if(event.type == sf::Event::MouseButtonPressed)
                 if (event.key.code == sf::Mouse::Left)
                 {
-                    m_Game.Fire(deltaT);
+                    m_Game.Fire(deltaTimeWhenUserTriesToFire);
                 }
         }
         

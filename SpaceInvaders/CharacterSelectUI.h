@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include <vector>
-#include "Ship.h"
+#include "Models\Ship.h"
 
 class CharacterSelectUI
 {
