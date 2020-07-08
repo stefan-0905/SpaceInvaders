@@ -18,7 +18,7 @@ public:
 	void Fire();
 	bool CheckEnemyBulletCollision(InvaderArmy& army);
 	void SetPosition(float x, float y);
-
+	void ResetShip();
 	void CleanBullets();
 
 	void SetShip(Ship* ship)
@@ -29,16 +29,14 @@ public:
 		m_Ship.SetSize(shipSize);
 		m_Ship.SetPosition(shipPosition.x, shipPosition.y);
 
-		HP = m_Ship.GetMaxHP();
 	}
 
 	inline sf::Vector2f GetPosition() const { return m_Ship.GetPosition(); }
 	inline sf::RectangleShape& GetShape() { return m_Ship.GetShape(); }
 	inline unsigned int GetMaxHP() const { return m_Ship.GetMaxHP(); }
+	inline unsigned int GetHP() const { return m_Ship.HP; }
 	inline float GetFireRate() const { return m_Ship.FireSpeed; }
 
-public:
-	unsigned int HP;
 private:
 	Ship m_Ship;
 	std::vector<Bullet> Bullets;

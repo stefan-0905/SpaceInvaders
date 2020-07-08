@@ -1,6 +1,6 @@
 #include "Bullet.h"
 
-Bullet::Bullet(sf::Vector2f position)
+Bullet::Bullet(sf::Vector2f position, int damage)
 {
 	sf::Texture texture;
 	if (texture.create(2, 5))
@@ -8,6 +8,7 @@ Bullet::Bullet(sf::Vector2f position)
 		body.setTexture(texture);
 		body.setOrigin(sf::Vector2f(0.25f, 10.f));
 		body.setPosition(position);
+		Damage = damage;
 	}
 
 }

@@ -50,8 +50,6 @@ void CharacterSelectUI::Draw(sf::RenderWindow& window)
 		SelectedShip = &Ships[ShipIndex];
 	}
 
-	////TODO Finish select
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		if (ShipIndex > 0)

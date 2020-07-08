@@ -16,6 +16,7 @@ public:
 	{
 		MaxHP = 1;
 		HP = MaxHP;
+		FireDamage = 1;
 		FireSpeed = 0.5f;
 
 		HPInfo.setFont(Config::GetFont());
@@ -62,10 +63,10 @@ public:
 		HPInfo.setString(std::to_string(HP) + "/" + std::to_string(MaxHP));
 	}
 
-	void Hurt() override
+	void Hurt(int damage) override
 	{
-		--HP;
-		if (HP == 0)
+		HP -= damage;
+		if (HP <= 0)
 			Killed = true;
 		HPInfo.setString(std::to_string(HP) + "/" + std::to_string(MaxHP));
 	}
@@ -83,6 +84,7 @@ public:
 	{
 		MaxHP = 2;
 		HP = MaxHP;
+		FireDamage = 1;
 		FireSpeed = 0.5f;
 
 		HPInfo.setFont(Config::GetFont());
@@ -121,10 +123,10 @@ public:
 			break;
 		}
 	}
-	void Hurt() override
+	void Hurt(int damage) override
 	{
-		--HP;
-		if (HP == 0)
+		HP -= damage;
+		if (HP <= 0)
 			Killed = true;
 		HPInfo.setString(std::to_string(HP) + "/" + std::to_string(MaxHP));
 	}
@@ -142,6 +144,7 @@ public:
 	{
 		MaxHP = 3;
 		HP = MaxHP;
+		FireDamage = 1;
 		FireSpeed = 0.5f;
 
 		HPInfo.setFont(Config::GetFont());
@@ -181,10 +184,10 @@ public:
 		}
 	}
 
-	void Hurt() override
+	void Hurt(int damage) override
 	{
-		--HP;
-		if (HP == 0)
+		HP -= damage;
+		if (HP <= 0)
 			Killed = true;
 		HPInfo.setString(std::to_string(HP) + "/" + std::to_string(MaxHP));
 	}

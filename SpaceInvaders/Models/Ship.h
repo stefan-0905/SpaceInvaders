@@ -10,10 +10,11 @@ enum class Side {
 class Killable
 {
 public:
-	unsigned int HP;
+	int HP;
+	int FireDamage;
 	bool Killed = false;
 	virtual void Reset() = 0;
-	virtual void Hurt() = 0;
+	virtual void Hurt(int damage) = 0;
 	virtual void Move(Side side) = 0;
 	virtual sf::Vector2f GetPosition() const = 0;
 	virtual sf::RectangleShape& GetShape() = 0;
@@ -44,10 +45,10 @@ public:
 		HP = MaxHP;
 	}
 
-	virtual void Hurt() override
+	virtual void Hurt(int damage) override
 	{
-		--HP;
-		if (HP == 0)
+		HP -= damage;
+		if (HP <= 0)
 			Killed = true;
 	}
 
@@ -91,6 +92,7 @@ public:
 	virtual inline sf::RectangleShape& GetShape() override { return Body; }
 	inline unsigned int GetMaxHP() const { return MaxHP; }
 	inline sf::FloatRect GetSize() const { return Body.getGlobalBounds(); }
+	inline int GetDamage() const { return FireDamage; }
 };
 
 
@@ -103,6 +105,7 @@ public:
 	{
 		MaxHP = 5;
 		HP = MaxHP;
+		FireDamage = 1;
 		FireSpeed = 0.5f;
 
 		Body.setTexture(&Config::GetSlingerTexture());
@@ -117,6 +120,7 @@ public:
 	{
 		MaxHP = 10;
 		HP = MaxHP;
+		FireDamage = 1;
 		FireSpeed = 1.f;
 
 		Body.setTexture(&Config::GetBazookerTexture());

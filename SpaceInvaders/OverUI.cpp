@@ -25,7 +25,7 @@ OverUI::OverUI()
 
 void OverUI::EndWith(bool won)
 {
-    won = true;
+    Won = true;
 }
 
 void OverUI::Draw(sf::RenderWindow& window)

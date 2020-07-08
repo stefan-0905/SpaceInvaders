@@ -3,10 +3,9 @@
 #include "Config.h"
 
 Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
-    : m_Player(sf::Vector2f(76.f, 48.f)), Army(20, 10), Font(Config::GetFont())
+    : m_Player(sf::Vector2f(76.f, 48.f)), Army(1, 10), Font(Config::GetFont())
 {
     State = GameState::StartScreen;
-
     // Player initialization
     m_Player.SetPosition((float)windowSize.x / 2, (float)windowSize.y - m_Player.GetShape().getGlobalBounds().height);
 
@@ -79,11 +78,17 @@ void Game::DrawPlaying(sf::RenderWindow& window)
         State = GameState::Over;
     }
     else {
+        if (Army.Level == 1)
+        {
+            State = GameState::Over;
+            Over.EndWith(true);
+        }
+
         m_Player.Draw(window);
         Army.Draw(window);
     }
 
-    HpText.setString("Lives:" + std::to_string(m_Player.HP) + "/" + std::to_string(m_Player.GetMaxHP()));
+    HpText.setString("Lives:" + std::to_string(m_Player.GetHP()) + "/" + std::to_string(m_Player.GetMaxHP()));
     HpText.setPosition(window.getSize().x - 100.f - 50.f, 10.f);
 
     window.draw(HpText);
@@ -129,6 +134,6 @@ void Game::DrawOver(sf::RenderWindow& window)
 void Game::RestartGame()
 {
     Army.Reset();
-    m_Player.HP = m_Player.GetMaxHP();
+    m_Player.ResetShip();
     m_Player.CleanBullets();
 }

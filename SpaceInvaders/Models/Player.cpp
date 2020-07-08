@@ -7,8 +7,6 @@ Player::Player(const sf::Vector2f dim)//, sf::Vector2u size)
 {
 	///Reserve memory locations for only 10 bullets 
 	Bullets.reserve(20);
-
-	HP = m_Ship.GetMaxHP();
 }
 
 Player::~Player()
@@ -64,12 +62,12 @@ void Player::MoveBullets(InvaderArmy& army)
 		//TODO Maybe start counting from middle of height
 
 		/// Check if bulllet hit something
-		for (int k = 0; k < army.GetCount(); k++)
+		for (unsigned int k = 0; k < army.GetCount(); k++)
 		{
 			if (!army.GetEnemies()[k]->Killed && Bullets[i].Intersects((army.GetEnemies()[k])->GetShape()))
 			{
 				Bullets.erase(Bullets.begin() + i);
-				army.Injure(k);
+				army.Injure(k, m_Ship.GetDamage());
 				break;
 			}
 		}
@@ -82,7 +80,7 @@ void Player::Fire()
 	///Allow only 10 bullets on the screen
 	if (Bullets.size() == 10) Bullets.erase(Bullets.begin());
 
-	Bullets.emplace_back(Bullet(m_Ship.GetPosition()));
+	Bullets.emplace_back(Bullet(m_Ship.GetPosition(), m_Ship.FireDamage));
 }
 
 bool Player::CheckEnemyBulletCollision(InvaderArmy& army)
@@ -92,17 +90,22 @@ bool Player::CheckEnemyBulletCollision(InvaderArmy& army)
 	{
 		if (EnemyBullets[i].Intersects(GetShape()))
 		{
+			m_Ship.HP -= EnemyBullets[i].GetDamage();
 			army.DestroyBullet(i);
-			HP--;
 		}
 	}
 
-	return HP;
+	return m_Ship.HP > 0;
 }
 
 void Player::SetPosition(float x, float y)
 {
 	m_Ship.SetPosition(x, y);
+}
+
+void Player::ResetShip()
+{
+	m_Ship.Reset();
 }
 
 void Player::CleanBullets()
