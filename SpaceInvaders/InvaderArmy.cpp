@@ -114,3 +114,11 @@ void InvaderArmy::DestroyBullet(int i)
 {
 	Bullets.erase(Bullets.begin() + i);
 }
+
+void InvaderArmy::Reset()
+{
+	for (unsigned int i = 0; i < Enemies.size(); i++)
+	{
+		Enemies[i].Killed = false;
+	}
+}

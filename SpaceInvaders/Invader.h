@@ -15,13 +15,13 @@ public:
 	void Move(Side side);
 	void SetTexture();
 	sf::Vector2f GetPosition() const { return body.getPosition();}
-	sf::Sprite& GetShape() { return body; };
+	sf::RectangleShape& GetShape() { return body; };
 
 public:
 	bool Killed = false;
 private:
 	sf::Texture* InvaderTexture;
-	sf::Sprite body;
+	sf::RectangleShape body;
 	bool Left;
 };
 

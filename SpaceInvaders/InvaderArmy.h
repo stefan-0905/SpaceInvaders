@@ -16,6 +16,7 @@ public:
 	void Fire(float deltaTime);
 	void Kill(int position);
 	void DestroyBullet(int i);
+	void Reset();
 
 	std::vector<Invader> GetEnemies() { return Enemies; }
 	std::vector<Bullet>* GetBullets() { return &Bullets; }

@@ -146,19 +146,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Invader.cpp" />
     <ClCompile Include="InvaderArmy.cpp" />
+    <ClCompile Include="OverUI.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
+    <ClCompile Include="StartScreenUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="CharacterSelectUI.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Invader.h" />
     <ClInclude Include="InvaderArmy.h" />
+    <ClInclude Include="OverUI.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Ship.h" />
     <ClInclude Include="SpaceInvaders.h" />
+    <ClInclude Include="StartScreenUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

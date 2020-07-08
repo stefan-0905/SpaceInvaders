@@ -12,7 +12,7 @@ public:
 	void Move(int direction);
 
 	inline sf::Vector2f GetPosition() const { return body.getPosition(); }
-	bool Intersects(sf::Sprite& shape);
+	bool Intersects(sf::RectangleShape& shape);
 private:
 	sf::Sprite body;
 };

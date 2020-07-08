@@ -31,7 +31,7 @@ void Bullet::Move(int direction)
 	}
 }
 
-bool Bullet::Intersects(sf::Sprite& shape)
+bool Bullet::Intersects(sf::RectangleShape& shape)
 {
 	return body.getGlobalBounds().intersects(shape.getGlobalBounds());
 }

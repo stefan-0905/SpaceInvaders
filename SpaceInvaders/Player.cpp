@@ -1,16 +1,14 @@
 #include "Player.h"
 
+#include "Config.h"
+
 Player::Player(const sf::Vector2f dim)//, sf::Vector2u size)
+	: m_Ship(dim.x, dim.y)
 {
 	///Reserve memory locations for only 10 bullets 
-	Bullets.reserve(10);
+	Bullets.reserve(20);
 
-	///Init Player
-	//Body.setTexture(texture);
-	Body.setOrigin(sf::Vector2f(dim.x / 2, dim.y / 2));
-	//Body.setPosition((float)size.x / 2, (float)size.y - Body.getGlobalBounds().height);
-
-	HP = MaxHP;
+	HP = m_Ship.GetMaxHP();
 }
 
 Player::~Player()
@@ -25,7 +23,7 @@ void Player::Draw(sf::RenderWindow& window)
 		Bullets[i].Draw(window);
 	}
 
-	window.draw(Body);
+	window.draw(m_Ship.GetShape());
 }
 
 //Move player Left - Right
@@ -34,20 +32,20 @@ void Player::Move(const Side side)
 	switch (side)
 	{
 	case Side::Left:
-		Body.move(-5.f, 0.0f);
+		m_Ship.Move(-5.f, 0.0f);
 		break;
 	case Side::Right:
-		Body.move(5.f, 0.0f);
+		m_Ship.Move(5.f, 0.0f);
 		break;
 	default:
 		break;
 	}
 
-	if (Body.getPosition().x < 50)
-		Body.setPosition(50, Body.getPosition().y);
+	if (m_Ship.GetPosition().x < 50)
+		m_Ship.SetPosition(50, m_Ship.GetPosition().y);
 
-	if (Body.getPosition().x > 974)
-		Body.setPosition(974, Body.getPosition().y);
+	if (m_Ship.GetPosition().x > 974)
+		m_Ship.SetPosition(974, m_Ship.GetPosition().y);
 }
 
 void Player::MoveBullets(InvaderArmy& army)
@@ -84,7 +82,7 @@ void Player::Fire()
 	///Allow only 10 bullets on the screen
 	if (Bullets.size() == 10) Bullets.erase(Bullets.begin());
 
-	Bullets.emplace_back(Bullet(Body.getPosition()));
+	Bullets.emplace_back(Bullet(m_Ship.GetPosition()));
 }
 
 bool Player::CheckEnemyBulletCollision(InvaderArmy& army)
@@ -104,11 +102,5 @@ bool Player::CheckEnemyBulletCollision(InvaderArmy& army)
 
 void Player::SetPosition(float x, float y)
 {
-	Body.setPosition(x, y);
-}
-
-void Player::SetTexture()
-{
-	DefenderTexture.loadFromFile("res/defender.jpg");
-	Body.setTexture(DefenderTexture);
+	m_Ship.SetPosition(x, y);
 }
