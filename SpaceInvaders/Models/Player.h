@@ -5,6 +5,7 @@
 #include "Bullet.h"
 #include "InvaderArmy.h"
 #include "Ship.h"
+#include "../Constants.h"
 
 class Player
 {
@@ -16,30 +17,25 @@ public:
 	void Move(const Side side);
 	void MoveBullets(InvaderArmy& army);
 	void Fire();
-	bool CheckEnemyBulletCollision(InvaderArmy& army);
+	bool CheckEnemyBulletCollision(InvaderArmy* army);
 	void SetPosition(float x, float y);
 	void ResetShip();
 	void CleanBullets();
 
-	void SetShip(Ship* ship)
-	{
-		auto shipPosition = m_Ship.GetPosition();
-		sf::FloatRect shipSize = m_Ship.GetSize();
-		m_Ship = *ship;
-		m_Ship.SetSize(shipSize);
-		m_Ship.SetPosition(shipPosition.x, shipPosition.y);
+	void SetShip(Ship* ship);
 
-	}
-
-	inline sf::Vector2f GetPosition() const { return m_Ship.GetPosition(); }
-	inline sf::RectangleShape& GetShape() { return m_Ship.GetShape(); }
-	inline unsigned int GetMaxHP() const { return m_Ship.GetMaxHP(); }
-	inline unsigned int GetHP() const { return m_Ship.HP; }
-	inline float GetFireRate() const { return m_Ship.FireSpeed; }
-
+	//inline sf::Vector2f GetPosition() const { return m_Ship.GetPosition(); }
+	//inline sf::RectangleShape& GetShape() { return m_Ship.GetShape(); }
+	inline unsigned int GetMaxHP() const { return m_Ship->GetMaxHP(); }
+	inline float GetHP() const { return HP; }
+	inline float GetFireRate() const { return m_Ship->GetFireSpeed(); }
+	inline sf::Vector2f GetSize() const { return Size; };
 private:
-	Ship m_Ship;
+	sf::Vector2f Size;
+	Ship* m_Ship;
 	std::vector<Bullet> Bullets;
+
+	float HP;
 
 };
 

@@ -24,8 +24,6 @@ private:
 	GameState State;
 	sf::Text HpText;
 
-	unsigned int CurrentLevel;
-
 public:
 	Game(const sf::Vector2f playerSize, const sf::Vector2u windowSize);
 	~Game();

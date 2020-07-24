@@ -1,21 +1,19 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Shape.h"
 
-class Bullet
+class Bullet : public Shape
 {
 public:
-	Bullet(sf::Vector2f position, int damage);
+	Bullet(sf::Vector2f position, float damage);
 	~Bullet();
 
 	void Draw(sf::RenderWindow& window);
 	void Move(int direction);
-
-	inline sf::Vector2f GetPosition() const { return body.getPosition(); }
-	bool Intersects(sf::RectangleShape& shape);
-	inline int GetDamage() const { return Damage; }
+	bool Intersects(Shape* shape);
+	inline float GetDamage() const { return Damage; }
 private:
-	sf::Sprite body;
-	int Damage;
+	float Damage;
 };
 

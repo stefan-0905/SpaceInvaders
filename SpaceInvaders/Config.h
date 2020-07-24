@@ -10,6 +10,7 @@ public:
 	sf::Texture Invader1;
 	sf::Texture Invader2;
 	sf::Texture Invader3;
+
 public:
 	Config()
 	{

@@ -13,12 +13,14 @@ private:
 	sf::RectangleShape Selector;
 
 	sf::Text Title;
+	Ship* SelectedShip;
 
 public:
-	Ship* SelectedShip;
 	CharacterSelectUI();
 	~CharacterSelectUI();
 
+	inline Ship* GetSelectedShip() { return SelectedShip; }
+	inline const sf::Texture* GetTexture() { return SelectedShip->GetTexture(); }
 	void Draw(sf::RenderWindow& window);
 };
 

@@ -10,8 +10,8 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1024, 512), "Space Invaders");
-    window.setFramerateLimit(60);
+    sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), "Space Invaders");
+    window.setFramerateLimit(30);
 
     Game m_Game(sf::Vector2f(76.f, 48.f), window.getSize());
 
@@ -30,22 +30,26 @@ int main()
 
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
-
-            if (event.type == sf::Event::KeyPressed)
+            switch (event.type)
             {
+            case sf::Event::Closed:
+                window.close();
+                break;
+            case sf::Event::KeyPressed:
                 if (event.key.code == sf::Keyboard::Enter)
                 {
                     m_Game.HandleStates(event, window);
                 }
-               
-            }
-            if(event.type == sf::Event::MouseButtonPressed)
+                break;
+            case sf::Event::MouseButtonPressed:
                 if (event.key.code == sf::Mouse::Left)
                 {
                     m_Game.Fire(deltaTimeWhenUserTriesToFire);
                 }
+                break;
+            default:
+                break;
+            }
         }
         
         m_Game.HandleDrawing(window);

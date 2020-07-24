@@ -2,15 +2,26 @@
 
 #include "../Config.h"
 
+
 Player::Player(const sf::Vector2f dim)//, sf::Vector2u size)
-	: m_Ship(dim.x, dim.y)
+	: Size(dim.x, dim.y)
 {
+	m_Ship = new Ship(Size.x, Size.y);
 	///Reserve memory locations for only 10 bullets 
 	Bullets.reserve(20);
 }
 
 Player::~Player()
 {
+}
+
+void Player::SetShip(Ship* ship)
+{
+	*m_Ship = *ship;
+	HP = static_cast<float>(ship->GetMaxHP());
+	m_Ship->SetSize(Size.x, Size.y);
+	m_Ship->SetPosition(WINDOW_SIZE_X / 2, WINDOW_SIZE_Y - m_Ship->GetGlobalBounds().height);
+	m_Ship->SetCenteredOrigin();
 }
 
 //Draw player on screen
@@ -21,7 +32,7 @@ void Player::Draw(sf::RenderWindow& window)
 		Bullets[i].Draw(window);
 	}
 
-	window.draw(m_Ship.GetShape());
+	m_Ship->Draw(window);
 }
 
 //Move player Left - Right
@@ -30,20 +41,20 @@ void Player::Move(const Side side)
 	switch (side)
 	{
 	case Side::Left:
-		m_Ship.Move(-5.f, 0.0f);
+		m_Ship->Move(-5.f, 0.0f);
 		break;
 	case Side::Right:
-		m_Ship.Move(5.f, 0.0f);
+		m_Ship->Move(5.f, 0.0f);
 		break;
 	default:
 		break;
 	}
 
-	if (m_Ship.GetPosition().x < 50)
-		m_Ship.SetPosition(50, m_Ship.GetPosition().y);
+	if (m_Ship->GetPosition().x < 50)
+		m_Ship->SetPosition(50, m_Ship->GetPosition().y);
 
-	if (m_Ship.GetPosition().x > 974)
-		m_Ship.SetPosition(974, m_Ship.GetPosition().y);
+	if (m_Ship->GetPosition().x > 974)
+		m_Ship->SetPosition(974, m_Ship->GetPosition().y);
 }
 
 void Player::MoveBullets(InvaderArmy& army)
@@ -64,10 +75,10 @@ void Player::MoveBullets(InvaderArmy& army)
 		/// Check if bulllet hit something
 		for (unsigned int k = 0; k < army.GetCount(); k++)
 		{
-			if (!army.GetEnemies()[k]->Killed && Bullets[i].Intersects((army.GetEnemies()[k])->GetShape()))
+			if (!army.GetEnemies()[k]->GetKilled() && Bullets[i].Intersects(((Shape*)army.GetEnemies()[k])))
 			{
 				Bullets.erase(Bullets.begin() + i);
-				army.Injure(k, m_Ship.GetDamage());
+				army.Injure(k, m_Ship->GetDamage());
 				break;
 			}
 		}
@@ -80,32 +91,34 @@ void Player::Fire()
 	///Allow only 10 bullets on the screen
 	if (Bullets.size() == 10) Bullets.erase(Bullets.begin());
 
-	Bullets.emplace_back(Bullet(m_Ship.GetPosition(), m_Ship.FireDamage));
+	Bullets.emplace_back(Bullet(m_Ship->GetPosition(), m_Ship->GetDamage()));
 }
 
-bool Player::CheckEnemyBulletCollision(InvaderArmy& army)
+bool Player::CheckEnemyBulletCollision(InvaderArmy* army)
 {
-	std::vector<Bullet>& EnemyBullets = *army.GetBullets();
-	for (unsigned int i = 0; i < EnemyBullets.size(); i++)
+	std::vector<Bullet>* EnemyBullets = army->GetBullets();
+	for (unsigned int i = 0; i < EnemyBullets->size(); i++)
 	{
-		if (EnemyBullets[i].Intersects(GetShape()))
+		auto shipShape = dynamic_cast<Shape*>(m_Ship);
+		if (shipShape && EnemyBullets->at(i).Intersects(shipShape))
 		{
-			m_Ship.HP -= EnemyBullets[i].GetDamage();
-			army.DestroyBullet(i);
+			HP -= EnemyBullets->at(i).GetDamage();
+			army->DestroyBullet(i);
 		}
 	}
 
-	return m_Ship.HP > 0;
+	return HP > 0;
 }
 
 void Player::SetPosition(float x, float y)
 {
-	m_Ship.SetPosition(x, y);
+	m_Ship->SetPosition(x, y);
 }
 
 void Player::ResetShip()
 {
-	m_Ship.Reset();
+	m_Ship->ResetKilled();
+	HP = static_cast<float>(m_Ship->GetMaxHP());
 }
 
 void Player::CleanBullets()

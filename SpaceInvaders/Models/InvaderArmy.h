@@ -12,7 +12,7 @@ private:
 	//Side to which invaders are moving
 	Side MoveSide;
 	std::vector<Bullet> Bullets;
-	Killable** Enemies1;
+	Invader** Enemies;
 	int InvadersPerRow;
 	unsigned int KillCount = 0;
 
@@ -24,11 +24,11 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void Move();
 	void Fire(float deltaTime);
-	void Injure(int position, int damage);
-	void DestroyBullet(int i);
 	void Reset();
+	void Injure(int position, float damage);
+	void DestroyBullet(int i);
 
-	Killable** GetEnemies() { return Enemies1; }
+	Invader** GetEnemies() { return Enemies; }
 	std::vector<Bullet>* GetBullets() { return &Bullets; }
 	unsigned int GetCount() const 
 	{
@@ -49,9 +49,8 @@ public:
 		}
 	}
 
-	InvaderArmy& operator=(const InvaderArmy& other);
-
 private:
 	void InitiateArmy();
+
 };
 

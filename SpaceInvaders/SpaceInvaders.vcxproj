@@ -149,18 +149,24 @@
     <ClCompile Include="CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Models\InvaderArmy.cpp" />
+    <ClCompile Include="Models\Shape.cpp" />
+    <ClCompile Include="Models\Ship.cpp" />
     <ClCompile Include="OverUI.cpp" />
     <ClCompile Include="Models\Player.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
     <ClCompile Include="StartScreenUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Models\Bullet.h" />
     <ClInclude Include="CharacterSelectUI.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Models\Collider.h" />
     <ClInclude Include="Models\Invaders\Invader.h" />
     <ClInclude Include="Models\InvaderArmy.h" />
+    <ClInclude Include="Models\Killable.h" />
+    <ClInclude Include="Models\Shape.h" />
     <ClInclude Include="OverUI.h" />
     <ClInclude Include="Models\Player.h" />
     <ClInclude Include="Models\Ship.h" />

@@ -2,97 +2,36 @@
 #include <SFML\Graphics.hpp>
 
 #include "../Config.h"
+#include "Shape.h"
+#include "Killable.h"
 
-enum class Side {
-	Left = 0, Right
-};
-
-class Killable
+enum class ShipType
 {
-public:
-	int HP;
-	int FireDamage;
-	bool Killed = false;
-	virtual void Reset() = 0;
-	virtual void Hurt(int damage) = 0;
-	virtual void Move(Side side) = 0;
-	virtual sf::Vector2f GetPosition() const = 0;
-	virtual sf::RectangleShape& GetShape() = 0;
-	virtual void Draw(sf::RenderWindow& window) = 0;
-	virtual ~Killable() {};
+	Undefined = 0, Slinger, Bazooker, Invader1, Invader2, Invader3
 };
 
-
-class Ship : public Killable
+class Ship : public Shape
 {
 protected:
-	sf::RectangleShape Body;
+	//sf::RectangleShape Body;
 	unsigned int MaxHP;
-
-public:
+	float HP;
+	bool Killed;
+	ShipType Type;
+	float FireDamage;
 	float FireSpeed;
-	Ship(float width, float height)
-		:Body(sf::Vector2f(width, height))
-	{
-		Killed = false;
-		//Body.setTexture(&Config::GetSlingerTexture());
-		Body.setOrigin(width / 2, height / 2);
-	};
+public:
+	Ship(float width, float height);
 
-	virtual void Reset() override
-	{
-		Killed = false;
-		HP = MaxHP;
-	}
+	void ResetKilled();
 
-	virtual void Hurt(int damage) override
-	{
-		HP -= damage;
-		if (HP <= 0)
-			Killed = true;
-	}
+	virtual void Move(float x, float y) override;
+	virtual void Draw(sf::RenderWindow& window);
 
-	void SetPosition(float x, float y) 
-	{
-		Body.setPosition(x, y);
-	};
-
-	virtual void Draw(sf::RenderWindow& window)
-	{
-		window.draw(Body);
-	}
-
-	virtual void Move(float x, float y)
-	{
-		Body.move(x, y);
-	}
-
-	void SetSize(sf::FloatRect newSize)
-	{
-		Body.setSize(sf::Vector2f(newSize.width, newSize.height));
-	}
-
-	virtual void Move(Side side) override
-	{
-		float moveWidth = 1.f;
-		switch (side)
-		{
-		case Side::Left:
-			Move(-moveWidth, 0.f);
-			break;
-		case Side::Right:
-			Move(moveWidth, 0.f);
-			break;
-		default:
-			break;
-		}
-	}
-
-	virtual inline sf::Vector2f GetPosition() const override { return Body.getPosition(); }
-	virtual inline sf::RectangleShape& GetShape() override { return Body; }
+	inline ShipType GetType() const { return Type; }
 	inline unsigned int GetMaxHP() const { return MaxHP; }
-	inline sf::FloatRect GetSize() const { return Body.getGlobalBounds(); }
-	inline int GetDamage() const { return FireDamage; }
+	inline float GetFireSpeed() const { return FireSpeed; }
+	inline float GetDamage() const { return FireDamage; }
 };
 
 
@@ -103,8 +42,9 @@ public:
 	Slinger(float width, float height)
 		: Ship(width, height)
 	{
+		Type = ShipType::Slinger;
 		MaxHP = 5;
-		HP = MaxHP;
+		HP = static_cast<float>(MaxHP);
 		FireDamage = 1;
 		FireSpeed = 0.5f;
 
@@ -118,8 +58,9 @@ public:
 	Bazooker(float width, float height)
 		: Ship(width, height)
 	{
+		Type = ShipType::Bazooker;
 		MaxHP = 10;
-		HP = MaxHP;
+		HP = static_cast<float>(MaxHP);
 		FireDamage = 1;
 		FireSpeed = 1.f;
 

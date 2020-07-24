@@ -1,16 +1,17 @@
 #include "Bullet.h"
+#include "../Config.h"
 
-Bullet::Bullet(sf::Vector2f position, int damage)
+Bullet::Bullet(sf::Vector2f position, float damage)
+	: Shape(2, 5)
 {
-	sf::Texture texture;
-	if (texture.create(2, 5))
+	sf::Texture testTex;
+	if (testTex.create(2, 5))
 	{
-		body.setTexture(texture);
-		body.setOrigin(sf::Vector2f(0.25f, 10.f));
-		body.setPosition(position);
-		Damage = damage;
+		Shape::SetTexture(&testTex);
 	}
-
+	SetPosition(position.x, position.y);
+	Body.setFillColor(sf::Color::White);
+	Damage = damage;
 }
 
 Bullet::~Bullet()
@@ -19,20 +20,20 @@ Bullet::~Bullet()
 
 void Bullet::Draw(sf::RenderWindow& window)
 {
-	window.draw(body);
+	Shape::Draw(window);
 }
 
 void Bullet::Move(int direction)
 {
 	if (direction) {
-		body.move(0.f, -3.f);
+		Shape::Move(0.f, -3.f);
 	} 
 	else {
-		body.move(0.f, 3.f);
+		Shape::Move(0.f, 3.f);
 	}
 }
 
-bool Bullet::Intersects(sf::RectangleShape& shape)
+bool Bullet::Intersects(Shape* shape)
 {
-	return body.getGlobalBounds().intersects(shape.getGlobalBounds());
+	return Shape::Colliding(shape);
 }

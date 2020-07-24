@@ -7,7 +7,7 @@ Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
 {
     State = GameState::StartScreen;
     // Player initialization
-    m_Player.SetPosition((float)windowSize.x / 2, (float)windowSize.y - m_Player.GetShape().getGlobalBounds().height);
+    m_Player.SetPosition((float)windowSize.x / 2, (float)windowSize.y - m_Player.GetSize().y);
 
     HpText.setFont(Font);
     HpText.setCharacterSize(20);
@@ -16,6 +16,7 @@ Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
 
 Game::~Game()
 {
+    printf("Game");
 }
 
 void Game::HandleMoving(float deltaTime)
@@ -72,23 +73,24 @@ void Game::HandleDrawing(sf::RenderWindow& window)
 }
 void Game::DrawPlaying(sf::RenderWindow& window)
 {
-    if (!m_Player.CheckEnemyBulletCollision(Army))
+    //if (!m_Player.CheckEnemyBulletCollision(&Army))
+    if (!m_Player.CheckEnemyBulletCollision(&Army))
     {
         Over.EndWith(false);
         State = GameState::Over;
     }
     else {
-        if (Army.Level == 1)
+        if (Army.Level == 4)
         {
-            State = GameState::Over;
             Over.EndWith(true);
+            State = GameState::Over;
         }
 
         m_Player.Draw(window);
         Army.Draw(window);
     }
 
-    HpText.setString("Lives:" + std::to_string(m_Player.GetHP()) + "/" + std::to_string(m_Player.GetMaxHP()));
+    HpText.setString("Lives:" + std::to_string((int)m_Player.GetHP()) + "/" + std::to_string(m_Player.GetMaxHP()));
     HpText.setPosition(window.getSize().x - 100.f - 50.f, 10.f);
 
     window.draw(HpText);
@@ -102,7 +104,7 @@ void Game::HandleStates(sf::Event event, sf::RenderWindow& window)
         if(StartScreen.StartSelected) State = GameState::CharacterSelect; else window.close();
         break;
     case GameState::CharacterSelect:
-        m_Player.SetShip(CharacterSelect.SelectedShip);
+        m_Player.SetShip(CharacterSelect.GetSelectedShip());
         State = GameState::Playing;
         break;
     case GameState::Playing:

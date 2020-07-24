@@ -1,12 +1,12 @@
 #include <iostream>
 
 #include "InvaderArmy.h"
+#include <memory>
 
 InvaderArmy::InvaderArmy(int level, int invadersPerRow)
 	: Level(level), InvadersPerRow(invadersPerRow)
 {
 	Bullets.reserve(InvadersPerRow);
-
 	InitiateArmy();
 }
 
@@ -14,17 +14,30 @@ InvaderArmy::InvaderArmy(int level, int invadersPerRow)
 InvaderArmy::~InvaderArmy()
 {
 	for (unsigned int i = 0; i < GetCount(); i++)
-		delete Enemies1[i];
-	delete[]Enemies1;
+	{
+		delete Enemies[i];
+		Enemies[i] = nullptr;
+	}
+	delete[]Enemies;
 }
 
 void InvaderArmy::InitiateArmy()
 {
-	printf("Initiation");
-	Enemies1 = new Killable*[GetCount()];
-
+	Enemies = new Invader * [GetCount()];
 	sf::Vector2f startingPos = sf::Vector2f(1024.f / 2 - InvadersPerRow / 2 * 50, 50.f);
 	int Row = 0;
+
+
+	// Example of unique pointers
+	/*std::unique_ptr<std::unique_ptr<Killable*>[]> Enemies;
+	Enemies = std::make_unique<std::unique_ptr<Killable*>[]>(3);
+	Enemies[0] = std::make_unique<Killable*>(new Invader1(...));
+	Enemies[1] = std::make_unique<Killable*>(new Invader1(...));
+	Enemies[2] = std::make_unique<Killable*>(new Invader1(...));
+	for (int i = 0; i < 3; i++)
+	{
+		(*(Enemies.get())[i])->Print();
+	}*/
 
 	for (unsigned int i = 0; i < GetCount(); i++)
 	{
@@ -32,23 +45,22 @@ void InvaderArmy::InitiateArmy()
 			Row++;
 
 		//TODO Fix placement of stronger enemies from bottom to top
-
 		if (Level == 1)
 		{
-			Enemies1[i] = new Invader1(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
+			Enemies[i] = new Invader1(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
 			continue;
 		}
 
 		switch (Row)
 		{
 		case 3:
-			Enemies1[i] = new Invader3(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
+			Enemies[i] = new Invader3(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
 			break;
 		case 2:
-			Enemies1[i] = new Invader2(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
+			Enemies[i] = new Invader2(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
 			break;
 		case 1:
-			Enemies1[i] = new Invader1(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
+			Enemies[i] = new Invader1(40.f, 30.f, sf::Vector2f(startingPos.x + (i % InvadersPerRow) * 70.f, startingPos.y + Row * 50.f));
 			break;
 		default:
 			break;
@@ -60,8 +72,8 @@ void InvaderArmy::Draw(sf::RenderWindow& window)
 {
 	for (unsigned int i = 0; i < GetCount(); i++)
 	{
-		if (!Enemies1[i]->Killed)
-			Enemies1[i]->Draw(window);
+		if (!Enemies[i]->GetKilled())
+			Enemies[i]->Draw(window);
 	}
 
 	for (unsigned int i = 0; i < Bullets.size(); i++)
@@ -72,18 +84,17 @@ void InvaderArmy::Draw(sf::RenderWindow& window)
 
 void InvaderArmy::Move()
 {
-
 	/// Move all enemies
 	for (unsigned int i = 0; i < GetCount(); i++)
 	{
-		Enemies1[i]->Move(MoveSide);
+		Enemies[i]->Move(MoveSide);
 	}
 
 	/// Check if enemies are nearing the edge of the screen 
-	if (Enemies1[0]->GetPosition().x < 100)
+	if (Enemies[0]->GetPosition().x < 100)
 		MoveSide = Side::Right;
 
-	if (Enemies1[GetCount() - 1]->GetPosition().x > 924)
+	if (Enemies[GetCount() - 1]->GetPosition().x > 924)
 		MoveSide = Side::Left;
 
 	/// Move bullets and delete all that moved out of the screen
@@ -116,12 +127,12 @@ void InvaderArmy::Fire(float deltaTime)
 	/// Row is getting substracted if invader is killed in that row
 	/// Finally, finding the position of alive invader or not finding him and not firing the bullet
 	do {
-		if (!Enemies1[row * InvadersPerRow + column]->Killed)
+		if (!Enemies[row * InvadersPerRow + column]->GetKilled())
 		{
-			sf::Vector2f invaderPosition = Enemies1[row * InvadersPerRow + column]->GetPosition();
+			sf::Vector2f invaderPosition = Enemies[row * InvadersPerRow + column]->GetPosition();
 			invaderPosition.y += 50;
-			Bullets.emplace_back(Bullet(invaderPosition, Enemies1[row * InvadersPerRow + column]->FireDamage));
-			totalTime -= 1;
+			Bullets.emplace_back(Bullet(invaderPosition, Enemies[row * InvadersPerRow + column]->GetFireDamage()));
+			totalTime -= 1.f;
 			break;
 		}
 		else 
@@ -129,17 +140,16 @@ void InvaderArmy::Fire(float deltaTime)
 			--row;
 		}
 	} while (row >= 0);
-
 }
 
-void InvaderArmy::Injure(int position, int damage)
+void InvaderArmy::Injure(int position, float damage)
 {
 	/// Set invader on specified position as killed
 	for (unsigned int i = 0; i < GetCount(); i++)
 	{
 		if (i == position) {
-			Enemies1[i]->Hurt(damage);
-			if (Enemies1[i]->Killed)
+			Enemies[i]->Hurt(damage);
+			if (Enemies[i]->GetKilled())
 				KillCount++;
 		}
 	}
@@ -151,8 +161,8 @@ void InvaderArmy::Injure(int position, int damage)
 	{
 		/// Remove old enemies
 		for (unsigned int i = 0; i < GetCount(); i++)
-			delete Enemies1[i];
-		delete[]Enemies1;
+			delete Enemies[i];
+		delete[]Enemies;
 
 		Level++;
 		//TODO Finish Game
@@ -173,7 +183,7 @@ void InvaderArmy::Reset()
 {
 	for (unsigned int i = 0; i < GetCount(); i++)
 	{
-		Enemies1[i]->Reset();
+		Enemies[i]->Reset();
 	}
 
 	for (unsigned int i = 0; i < Bullets.size(); i++)
