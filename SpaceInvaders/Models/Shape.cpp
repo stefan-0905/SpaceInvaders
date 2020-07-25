@@ -19,6 +19,11 @@ void Shape::SetSize(float width, float height)
 	Body.setSize(Size);
 }
 
+void Shape::SetFillColor(sf::Color color)
+{
+	Body.setFillColor(color);
+}
+
 void Shape::SetCenteredOrigin()
 {
 	Body.setOrigin(Size.x / 2, Size.y / 2);

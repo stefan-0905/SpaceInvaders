@@ -21,6 +21,8 @@ public:
 	// Set size of a shape
 	void SetSize(float width, float height);
 
+	void SetFillColor(sf::Color color);
+
 	void SetCenteredOrigin();
 	virtual bool Colliding(Shape* shape);
 

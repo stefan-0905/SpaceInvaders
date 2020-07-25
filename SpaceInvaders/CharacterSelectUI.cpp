@@ -4,19 +4,20 @@
 
 
 CharacterSelectUI::CharacterSelectUI()
-	: Selector(sf::Vector2f(50.f, 5.f))
+	: Selector(CS_SHIP_WIDTH, 5.f)
 {
-	this->Ships.reserve(2);
-	this->Ships.emplace_back(Slinger(CS_SHIP_WIDTH, CS_SHIP_HEIGHT));
-	this->Ships.emplace_back(Bazooker(CS_SHIP_WIDTH, CS_SHIP_HEIGHT));
+	Ships[0] = new Slinger(CS_SHIP_WIDTH, CS_SHIP_HEIGHT);
+	Ships[1] = new Bazooker(CS_SHIP_WIDTH, CS_SHIP_HEIGHT);
 
-	Selector.setFillColor(sf::Color::Yellow);
-	Selector.setOrigin(25.f, 2.5f);
+	sf::Texture texture;
+	if (texture.create(static_cast<unsigned int>(CS_SHIP_WIDTH), 5))
+		Selector.SetTexture(&texture);
 
-	Selector.setPosition(WINDOW_SIZE_X / 2 - Ships.size() / 2 * CS_SHIP_WIDTH, WINDOW_SIZE_Y / 2 + CS_SHIP_HEIGHT / 2 + 10.f);
+	Selector.SetFillColor(sf::Color::Yellow);
+	Selector.SetPosition(WINDOW_SIZE_X / 2 - CS_NUMBER_OF_SHIPS / 2 * CS_SHIP_WIDTH, WINDOW_SIZE_Y / 2 + CS_SHIP_HEIGHT / 2 + 10.f);
 
-	SelectedShip = &(Ships[0]);
 	ShipIndex = 0;
+	SelectedShip = Ships[ShipIndex];
 
 	Title.setFont(Config::GetFont());
 	Title.setCharacterSize(24);
@@ -27,38 +28,40 @@ CharacterSelectUI::CharacterSelectUI()
 
 CharacterSelectUI::~CharacterSelectUI()
 {
+	for (unsigned int i = 0; i < CS_NUMBER_OF_SHIPS; i++)
+		delete Ships[i];
 }
 
 void CharacterSelectUI::Draw(sf::RenderWindow& window)
 {
 	Title.setPosition((float)window.getSize().x / 2, window.getSize().y / 2 - 100.f);
 	
-	float startX = window.getSize().x / 2 - Ships.size() / 2 * 50.f;
+	float startX = window.getSize().x / 2 - CS_NUMBER_OF_SHIPS / 2 * 50.f;
 	float startY = (float)window.getSize().y / 2;
 
-	for (unsigned int i = 0; i < Ships.size(); i++)
+	for (unsigned int i = 0; i < CS_NUMBER_OF_SHIPS; i++)
 	{
-		Ships[i].SetPosition(startX, startY);
+		Ships[i]->SetPosition(startX, startY);
 		startX += 100.f;
-		Ships[i].Draw(window);
+		Ships[i]->Draw(window);
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		if(ShipIndex < Ships.size() - 1)
+		if(ShipIndex < CS_NUMBER_OF_SHIPS - 1)
 			++ShipIndex;
-		Selector.setPosition(window.getSize().x / 2 + 50.f, window.getSize().y / 2 + 60.f);
-		SelectedShip = &Ships[ShipIndex];
+		Selector.SetPosition(window.getSize().x / 2 + 50.f, window.getSize().y / 2 + 60.f);
+		SelectedShip = Ships[ShipIndex];
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		if (ShipIndex > 0)
 			--ShipIndex;
-		Selector.setPosition(window.getSize().x / 2 - 50.f, window.getSize().y / 2 + 60.f);
-		SelectedShip = &Ships[ShipIndex];
+		Selector.SetPosition(window.getSize().x / 2 - 50.f, window.getSize().y / 2 + 60.f);
+		SelectedShip = Ships[ShipIndex];
 	}
 
 	window.draw(Title);
-	window.draw(Selector);
+	Selector.Draw(window);
 }

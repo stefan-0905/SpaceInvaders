@@ -2,18 +2,20 @@
 #include <SFML\Graphics.hpp>
 #include <vector>
 #include "Models\Ship.h"
+#include "Constants.h"
+
 
 class CharacterSelectUI
 {
 private:
-	std::vector<Ship> Ships;
+	Ship* Ships[CS_NUMBER_OF_SHIPS];
 
-	//TOD Check if this index is needed
+	// Enables dynamic track of selected ship's index
 	unsigned int ShipIndex;
-	sf::RectangleShape Selector;
-
-	sf::Text Title;
 	Ship* SelectedShip;
+
+	Shape Selector;
+	sf::Text Title;
 
 public:
 	CharacterSelectUI();

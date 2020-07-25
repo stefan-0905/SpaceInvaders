@@ -5,7 +5,6 @@
 StartScreenUI::StartScreenUI()
     : Banner(sf::Vector2f(BANNER_WIDTH, BANNER_HEIGHT))
 {
-    //Font.loadFromFile("fonts/micross.ttf");
     BannerTexture.loadFromFile("res/title.jpg");
 
     Banner.setTexture(&BannerTexture);

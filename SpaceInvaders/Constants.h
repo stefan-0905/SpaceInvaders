@@ -19,3 +19,5 @@ const float BANNER_HEIGHT = 100.f;
 const float CS_SHIP_WIDTH = 50.f;
 // Ship height in character selection screen
 const float CS_SHIP_HEIGHT = 100.f;
+// Number of different ship we choose from
+const unsigned int CS_NUMBER_OF_SHIPS = 2;
