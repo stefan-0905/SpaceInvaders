@@ -1,18 +1,19 @@
 #include "CharacterSelectUI.h"
 #include "Config.h"
+#include "Constants.h"
 
 
 CharacterSelectUI::CharacterSelectUI()
 	: Selector(sf::Vector2f(50.f, 5.f))
 {
 	this->Ships.reserve(2);
-	this->Ships.emplace_back(Slinger(50.f, 100.f));
-	this->Ships.emplace_back(Bazooker(50.f, 100.f));
+	this->Ships.emplace_back(Slinger(CS_SHIP_WIDTH, CS_SHIP_HEIGHT));
+	this->Ships.emplace_back(Bazooker(CS_SHIP_WIDTH, CS_SHIP_HEIGHT));
 
 	Selector.setFillColor(sf::Color::Yellow);
 	Selector.setOrigin(25.f, 2.5f);
 
-	Selector.setPosition(1024 / 2 - Ships.size() / 2 * 50.f, 512 / 2 + 100.f / 2 + 10.f);
+	Selector.setPosition(WINDOW_SIZE_X / 2 - Ships.size() / 2 * CS_SHIP_WIDTH, WINDOW_SIZE_Y / 2 + CS_SHIP_HEIGHT / 2 + 10.f);
 
 	SelectedShip = &(Ships[0]);
 	ShipIndex = 0;

@@ -1,6 +1,7 @@
 #pragma once
-#include "Models\Player.h"
-#include "Models\InvaderArmy.h"
+#include "Models/Player.h"
+#include "Models/Level.h"
+#include "Models/InvaderArmy.h"
 #include "OverUI.h"
 #include "CharacterSelectUI.h"
 #include "StartScreenUI.h"
@@ -15,7 +16,7 @@ class Game
 public:
 	Player m_Player;
 	InvaderArmy Army;
-
+	Level cLevel;
 private:
 	sf::Font Font;
 	StartScreenUI StartScreen;

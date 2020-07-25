@@ -7,8 +7,8 @@ Player::Player(const sf::Vector2f dim)//, sf::Vector2u size)
 	: Size(dim.x, dim.y)
 {
 	m_Ship = new Ship(Size.x, Size.y);
-	///Reserve memory locations for only 10 bullets 
-	Bullets.reserve(20);
+	///Reserve memory locations for only 20 bullets 
+	Bullets.reserve(BULLETS_ON_SCREEN);
 }
 
 Player::~Player()
@@ -73,7 +73,7 @@ void Player::MoveBullets(InvaderArmy& army)
 		//TODO Maybe start counting from middle of height
 
 		/// Check if bulllet hit something
-		for (unsigned int k = 0; k < army.GetCount(); k++)
+		for (unsigned int k = 0; k < army.GetEnemyCount(); k++)
 		{
 			if (!army.GetEnemies()[k]->GetKilled() && Bullets[i].Intersects(((Shape*)army.GetEnemies()[k])))
 			{
@@ -88,10 +88,14 @@ void Player::MoveBullets(InvaderArmy& army)
 //Fire bullet 
 void Player::Fire()
 {
-	///Allow only 10 bullets on the screen
-	if (Bullets.size() == 10) Bullets.erase(Bullets.begin());
+	// If there are move bullets then predicted, remove one from start.
+	if (Bullets.size() == BULLETS_ON_SCREEN) Bullets.erase(Bullets.begin());
 
-	Bullets.emplace_back(Bullet(m_Ship->GetPosition(), m_Ship->GetDamage()));
+	// Set position to be on top of the player so that bullet doesn't spawn in the player center
+	auto bulletPosition = m_Ship->GetPosition();
+	bulletPosition.y -= m_Ship->GetGlobalBounds().height / 2;
+
+	Bullets.emplace_back(Bullet(bulletPosition, m_Ship->GetDamage()));
 }
 
 bool Player::CheckEnemyBulletCollision(InvaderArmy* army)

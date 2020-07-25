@@ -149,6 +149,7 @@
     <ClCompile Include="CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Models\InvaderArmy.cpp" />
+    <ClCompile Include="Models\Level.cpp" />
     <ClCompile Include="Models\Shape.cpp" />
     <ClCompile Include="Models\Ship.cpp" />
     <ClCompile Include="OverUI.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Models\Invaders\Invader.h" />
     <ClInclude Include="Models\InvaderArmy.h" />
     <ClInclude Include="Models\Killable.h" />
+    <ClInclude Include="Models\Level.h" />
     <ClInclude Include="Models\Shape.h" />
     <ClInclude Include="OverUI.h" />
     <ClInclude Include="Models\Player.h" />

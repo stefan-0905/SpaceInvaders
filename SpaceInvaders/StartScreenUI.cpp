@@ -1,8 +1,9 @@
 #include "StartScreenUI.h"
 #include "Config.h"
+#include "Constants.h"
 
 StartScreenUI::StartScreenUI()
-    : Banner(sf::Vector2f(200.f, 100.f))
+    : Banner(sf::Vector2f(BANNER_WIDTH, BANNER_HEIGHT))
 {
     //Font.loadFromFile("fonts/micross.ttf");
     BannerTexture.loadFromFile("res/title.jpg");

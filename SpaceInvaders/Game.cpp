@@ -3,7 +3,7 @@
 #include "Config.h"
 
 Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
-    : m_Player(sf::Vector2f(76.f, 48.f)), Army(1, 10), Font(Config::GetFont())
+    : m_Player(sf::Vector2f(76.f, 48.f)), Army(30), cLevel(&Army), Font(Config::GetFont())
 {
     State = GameState::StartScreen;
     // Player initialization
@@ -16,12 +16,16 @@ Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
 
 Game::~Game()
 {
-    printf("Game");
 }
 
 void Game::HandleMoving(float deltaTime)
 {
     if (State != GameState::Playing) return;
+
+    if (cLevel.Completed())
+    {
+        cLevel.Next();
+    }
 
     // Move Invading Army Left - Right
     Army.Move();
@@ -36,8 +40,9 @@ void Game::HandleMoving(float deltaTime)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         m_Player.Move(Side::Right);
-    }
+    } 
     m_Player.MoveBullets(Army);
+
 
 }
 
@@ -80,7 +85,7 @@ void Game::DrawPlaying(sf::RenderWindow& window)
         State = GameState::Over;
     }
     else {
-        if (Army.Level == 4)
+        if (cLevel.GetCurrentLevel() == 4)
         {
             Over.EndWith(true);
             State = GameState::Over;
@@ -135,7 +140,7 @@ void Game::DrawOver(sf::RenderWindow& window)
 
 void Game::RestartGame()
 {
-    Army.Reset();
+    cLevel.StartNewGame();
     m_Player.ResetShip();
     m_Player.CleanBullets();
 }

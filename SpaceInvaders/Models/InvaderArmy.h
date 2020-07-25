@@ -13,44 +13,26 @@ private:
 	Side MoveSide;
 	std::vector<Bullet> Bullets;
 	Invader** Enemies;
-	int InvadersPerRow;
+	unsigned int MaxEnemies;
+	unsigned int EnemyCount;
 	unsigned int KillCount = 0;
 
 public:
-	int Level;
-	InvaderArmy(int level, int InvadersPerRow);
+	InvaderArmy(unsigned int enemyCount);
 	~InvaderArmy();
 
 	void Draw(sf::RenderWindow& window);
 	void Move();
 	void Fire(float deltaTime);
-	void Reset();
 	void Injure(int position, float damage);
 	void DestroyBullet(int i);
 
+	void SetEnemyCount(unsigned int count);
+
 	Invader** GetEnemies() { return Enemies; }
 	std::vector<Bullet>* GetBullets() { return &Bullets; }
-	unsigned int GetCount() const 
-	{
-		switch (Level)
-		{
-		case 1:
-			return 20;
-			break;
-		case 2:
-			return 20;
-			break;
-		case 3:
-			return 30;
-			break;
-		default:
-			return 0;
-			break;
-		}
-	}
 
-private:
-	void InitiateArmy();
-
+	inline unsigned int GetEnemyCount() { return EnemyCount; };
+	inline bool EnemiesDestroyed() { return EnemyCount == KillCount; }
 };
 

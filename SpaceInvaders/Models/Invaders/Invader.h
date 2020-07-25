@@ -23,7 +23,7 @@ public:
 		HPInfo.setCharacterSize(8);
 		HPInfo.setFillColor(sf::Color::White);
 		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
-
+		
 		Body.setPosition(position);
 		HPInfo.setPosition(position.x - width / 2, position.y - height);
 		Body.setTexture(&Config::GetInvader1());
@@ -89,7 +89,7 @@ public:
 		FireDamage = 1;
 		FireSpeed = 0.5f;
 		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
-
+		Body.setTexture(&Config::GetInvader1());
 	}
 };
 
@@ -105,7 +105,7 @@ public:
 		FireDamage = 1;
 		FireSpeed = 0.5f;
 		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
-
+		Body.setTexture(&Config::GetInvader2());
 	}
 };
 
@@ -121,5 +121,6 @@ public:
 		FireDamage = 1;
 		FireSpeed = 0.5f;
 		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
+		Body.setTexture(&Config::GetInvader3());
 	}
 };

@@ -25,7 +25,7 @@ OverUI::OverUI()
 
 void OverUI::EndWith(bool won)
 {
-    Won = true;
+    Won = won;
 }
 
 void OverUI::Draw(sf::RenderWindow& window)
@@ -59,19 +59,6 @@ void OverUI::Draw(sf::RenderWindow& window)
 
         AgainSelected = true;
     }
-
-    //if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Enter))
-    //{
-    //    //RestartGame();
-    //    if (AgainSelected)
-    //    {
-    //        State = GameState::Playing;
-    //    }
-    //    else
-    //    {
-    //        State = GameState::StartScreen;
-    //    }
-    //}
 
     window.draw(ResultText);
     window.draw(PlayAgain);
