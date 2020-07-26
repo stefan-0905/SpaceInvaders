@@ -7,6 +7,7 @@
 #include "Models\Bullet.h"
 #include "Game.h"
 #include "SpaceInvaders.h"
+#include "Models/EventHandler.h"
 
 int main()
 {
@@ -14,6 +15,8 @@ int main()
     window.setFramerateLimit(30);
 
     Game m_Game(sf::Vector2f(76.f, 48.f), window.getSize());
+
+    EventHandler m_Handler(&m_Game, &window);
 
     float deltaTimeForEachFrame = 0.f;
     float deltaTimeWhenUserTriesToFire = 0.f;
@@ -25,31 +28,12 @@ int main()
         deltaTimeWhenUserTriesToFire += deltaTimeForEachFrame;
         sf::Event event;
         
-        m_Game.HandleMoving(deltaTimeForEachFrame);
         window.clear();
+        m_Game.HandleMoving(deltaTimeForEachFrame);
 
         while (window.pollEvent(event))
         {
-            switch (event.type)
-            {
-            case sf::Event::Closed:
-                window.close();
-                break;
-            case sf::Event::KeyPressed:
-                if (event.key.code == sf::Keyboard::Enter)
-                {
-                    m_Game.HandleStates(event, window);
-                }
-                break;
-            case sf::Event::MouseButtonPressed:
-                if (event.key.code == sf::Mouse::Left)
-                {
-                    m_Game.Fire(deltaTimeWhenUserTriesToFire);
-                }
-                break;
-            default:
-                break;
-            }
+            m_Handler.Handle(event, deltaTimeWhenUserTriesToFire);
         }
         
         m_Game.HandleDrawing(window);

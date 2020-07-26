@@ -5,6 +5,7 @@
 #include "OverUI.h"
 #include "CharacterSelectUI.h"
 #include "StartScreenUI.h"
+#include "Models/PlayerController.h"
 
 enum class GameState
 {
@@ -15,6 +16,7 @@ class Game
 {
 public:
 	Player m_Player;
+	PlayerController m_PlayerController;
 	InvaderArmy Army;
 	Level cLevel;
 private:
@@ -31,7 +33,6 @@ public:
 	void HandleMoving(float deltaTime);
 	void HandleDrawing(sf::RenderWindow& window);
 	void HandleStates(sf::Event event, sf::RenderWindow& window);
-	void Fire(float& deltaTime);
 
 private:
 	void DrawPlaying(sf::RenderWindow& window);

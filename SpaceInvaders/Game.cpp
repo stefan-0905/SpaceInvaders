@@ -3,7 +3,7 @@
 #include "Config.h"
 
 Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
-    : m_Player(sf::Vector2f(76.f, 48.f)), Army(30), cLevel(&Army), Font(Config::GetFont())
+    : m_Player(sf::Vector2f(76.f, 48.f)), m_PlayerController(&m_Player), Army(30), cLevel(&Army), Font(Config::GetFont())
 {
     State = GameState::StartScreen;
     // Player initialization
@@ -32,27 +32,10 @@ void Game::HandleMoving(float deltaTime)
     Army.Fire(deltaTime);
 
     // Move Player And his assets - bullets
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        m_Player.Move(Side::Left);
-    }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        m_Player.Move(Side::Right);
-    } 
+    m_PlayerController.Move();
     m_Player.MoveBullets(Army);
 
 
-}
-
-void Game::Fire(float& deltaTime)
-{
-    if (deltaTime >= m_Player.GetFireRate())
-    {
-        m_Player.Fire();
-        deltaTime = 0;
-    }
 }
 
 void Game::HandleDrawing(sf::RenderWindow& window)
@@ -78,7 +61,6 @@ void Game::HandleDrawing(sf::RenderWindow& window)
 }
 void Game::DrawPlaying(sf::RenderWindow& window)
 {
-    //if (!m_Player.CheckEnemyBulletCollision(&Army))
     if (!m_Player.CheckEnemyBulletCollision(&Army))
     {
         Over.EndWith(false);

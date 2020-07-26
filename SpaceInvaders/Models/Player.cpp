@@ -3,7 +3,7 @@
 #include "../Config.h"
 
 
-Player::Player(const sf::Vector2f dim)//, sf::Vector2u size)
+Player::Player(const sf::Vector2f dim)
 	: Size(dim.x, dim.y)
 {
 	m_Ship = new Ship(Size.x, Size.y);

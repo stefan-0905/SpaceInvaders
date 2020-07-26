@@ -148,8 +148,10 @@
     <ClCompile Include="Models\Bullet.cpp" />
     <ClCompile Include="CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Models\EventHandler.cpp" />
     <ClCompile Include="Models\InvaderArmy.cpp" />
     <ClCompile Include="Models\Level.cpp" />
+    <ClCompile Include="Models\PlayerController.cpp" />
     <ClCompile Include="Models\Shape.cpp" />
     <ClCompile Include="Models\Ship.cpp" />
     <ClCompile Include="OverUI.cpp" />
@@ -164,10 +166,12 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Models\Collider.h" />
+    <ClInclude Include="Models\EventHandler.h" />
     <ClInclude Include="Models\Invaders\Invader.h" />
     <ClInclude Include="Models\InvaderArmy.h" />
     <ClInclude Include="Models\Killable.h" />
     <ClInclude Include="Models\Level.h" />
+    <ClInclude Include="Models\PlayerController.h" />
     <ClInclude Include="Models\Shape.h" />
     <ClInclude Include="OverUI.h" />
     <ClInclude Include="Models\Player.h" />

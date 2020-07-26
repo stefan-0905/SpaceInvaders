@@ -24,12 +24,11 @@ public:
 
 	void SetShip(Ship* ship);
 
-	//inline sf::Vector2f GetPosition() const { return m_Ship.GetPosition(); }
-	//inline sf::RectangleShape& GetShape() { return m_Ship.GetShape(); }
 	inline unsigned int GetMaxHP() const { return m_Ship->GetMaxHP(); }
 	inline float GetHP() const { return HP; }
 	inline float GetFireRate() const { return m_Ship->GetFireSpeed(); }
 	inline sf::Vector2f GetSize() const { return Size; };
+	inline Ship* GetShip() { return m_Ship; }
 private:
 	sf::Vector2f Size;
 	Ship* m_Ship;
