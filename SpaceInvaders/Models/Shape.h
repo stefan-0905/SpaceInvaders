@@ -24,7 +24,7 @@ public:
 	void SetFillColor(sf::Color color);
 
 	void SetCenteredOrigin();
-	virtual bool Colliding(Shape* shape);
+	bool Intersects(Shape* shape);
 
 	void SetTexture(const sf::Texture* texture);
 	// Move shape

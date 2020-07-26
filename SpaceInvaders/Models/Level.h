@@ -11,6 +11,7 @@ protected:
 	unsigned int Current;
 
 public:
+	static const unsigned int MaxLevel = 3;
 	Level(InvaderArmy* army);
 	~Level();
 	unsigned int GetEnemyCountBasedOnCurrentLevel() const;

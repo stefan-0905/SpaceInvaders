@@ -5,7 +5,8 @@
 #include "OverUI.h"
 #include "CharacterSelectUI.h"
 #include "StartScreenUI.h"
-#include "Models/PlayerController.h"
+#include "Models/Controllers/PlayerController.h"
+#include "Models/Controllers/PlayerAIController.h"
 
 enum class GameState
 {
@@ -18,7 +19,8 @@ public:
 	Player m_Player;
 	PlayerController m_PlayerController;
 	InvaderArmy Army;
-	Level cLevel;
+	PlayerAIController m_AIController;
+	Level m_Level;
 private:
 	sf::Font Font;
 	StartScreenUI StartScreen;
@@ -30,7 +32,7 @@ private:
 public:
 	Game(const sf::Vector2f playerSize, const sf::Vector2u windowSize);
 	~Game();
-	void HandleMoving(float deltaTime);
+	void Tick(float deltaTime);
 	void HandleDrawing(sf::RenderWindow& window);
 	void HandleStates(sf::Event event, sf::RenderWindow& window);
 

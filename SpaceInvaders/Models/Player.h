@@ -29,6 +29,7 @@ public:
 	inline float GetFireRate() const { return m_Ship->GetFireSpeed(); }
 	inline sf::Vector2f GetSize() const { return Size; };
 	inline Ship* GetShip() { return m_Ship; }
+	inline std::vector<Bullet>* GetBullets() { return &Bullets; }
 private:
 	sf::Vector2f Size;
 	Ship* m_Ship;

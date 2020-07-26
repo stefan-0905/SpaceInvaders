@@ -6,14 +6,20 @@
 class Bullet : public Shape
 {
 public:
-	Bullet(sf::Vector2f position, float damage);
+
+	enum class Direction
+	{
+		Up = 0, Down
+	};
+
+	Bullet(sf::Vector2f position, float damage, Direction moveDirection);
 	~Bullet();
 
 	void Draw(sf::RenderWindow& window);
-	void Move(int direction);
-	bool Intersects(Shape* shape);
+	void Move();
 	inline float GetDamage() const { return Damage; }
 private:
 	float Damage;
+	Direction MoveDirection;
 };
 

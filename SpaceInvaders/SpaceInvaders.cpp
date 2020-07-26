@@ -29,7 +29,8 @@ int main()
         sf::Event event;
         
         window.clear();
-        m_Game.HandleMoving(deltaTimeForEachFrame);
+
+        m_Game.Tick(deltaTimeForEachFrame);
 
         while (window.pollEvent(event))
         {

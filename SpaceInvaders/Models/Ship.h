@@ -61,8 +61,8 @@ public:
 		Type = ShipType::Bazooker;
 		MaxHP = 10;
 		HP = static_cast<float>(MaxHP);
-		FireDamage = 1;
-		FireSpeed = 1.f;
+		FireDamage = 3;
+		FireSpeed = 0.1f;
 
 		Body.setTexture(&Config::GetBazookerTexture());
 	}

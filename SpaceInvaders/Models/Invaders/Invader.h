@@ -11,66 +11,15 @@ protected:
 	sf::Text HPInfo;
 
 public:
-	Invader(float width, float height, sf::Vector2f position)
-		: Ship(width, height)
-	{
-		MaxHP = 1;
-		HP = static_cast<float>(MaxHP);
-		FireDamage = 1;
-		FireSpeed = 0.5f;
+	Invader(float width, float height, sf::Vector2f position);
 
-		HPInfo.setFont(Config::GetFont());
-		HPInfo.setCharacterSize(8);
-		HPInfo.setFillColor(sf::Color::White);
-		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
-		
-		Body.setPosition(position);
-		HPInfo.setPosition(position.x - width / 2, position.y - height);
-		Body.setTexture(&Config::GetInvader1());
-	}
+	virtual void Draw(sf::RenderWindow& window) override;
 
-	void Draw(sf::RenderWindow& window) override
-	{
-		window.draw(Body);
-		window.draw(HPInfo);
-	}
+	virtual void Move(float x, float y) override;
 
-	void Move(float x, float y) override
-	{
-		HPInfo.move(x, y);
-		Body.move(x, y);
-	}
+	void Reset();
 
-	void Move(Side side)
-	{
-		float moveWidth = 1.f;
-		switch (side)
-		{
-		case Side::Left:
-			Move(-moveWidth, 0.f);
-			break;
-		case Side::Right:
-			Move(moveWidth, 0.f);
-			break;
-		default:
-			break;
-		}
-	}
-
-	void Reset()
-	{
-		Killed = false;
-		HP = static_cast<float>(MaxHP);
-		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
-	}
-
-	void Hurt(float damage)
-	{
-		HP -= damage;
-		if (HP <= 0)
-			Killed = true;
-		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
-	}
+	void Hurt(float damage);
 
 	const sf::Vector2f GetPosition() { return Ship::GetPosition(); }
 	bool GetKilled() { return Killed; }

@@ -11,8 +11,6 @@ Level::Level(InvaderArmy* army)
 Level::~Level()
 {}
 
-
-
 unsigned int Level::GetEnemyCountBasedOnCurrentLevel() const
 {
 	switch (Current)
@@ -47,7 +45,7 @@ void Level::StartNewGame()
 void Level::Next()
 {
 	++Current;
-	Generate();
+	if(Current <= MaxLevel) Generate();
 }
 
 void Level::Generate()

@@ -61,7 +61,7 @@ void Player::MoveBullets(InvaderArmy& army)
 {
 	for (unsigned int i = 0; i < Bullets.size(); i++)
 	{
-		Bullets[i].Move(1);
+		Bullets[i].Move();
 
 		/// Remove if bullet misses everything and exits screen
 		if (Bullets[i].GetPosition().y <= 0)
@@ -75,7 +75,7 @@ void Player::MoveBullets(InvaderArmy& army)
 		/// Check if bulllet hit something
 		for (unsigned int k = 0; k < army.GetEnemyCount(); k++)
 		{
-			if (!army.GetEnemies()[k]->GetKilled() && Bullets[i].Intersects(((Shape*)army.GetEnemies()[k])))
+			if ( !army.GetEnemies()[k]->GetKilled() && Bullets[i].Intersects(dynamic_cast<Shape*>(army.GetEnemies()[k])) )
 			{
 				Bullets.erase(Bullets.begin() + i);
 				army.Injure(k, m_Ship->GetDamage());
@@ -95,7 +95,7 @@ void Player::Fire()
 	auto bulletPosition = m_Ship->GetPosition();
 	bulletPosition.y -= m_Ship->GetGlobalBounds().height / 2;
 
-	Bullets.emplace_back(Bullet(bulletPosition, m_Ship->GetDamage()));
+	Bullets.emplace_back(Bullet(bulletPosition, m_Ship->GetDamage(), Bullet::Direction::Up));
 }
 
 bool Player::CheckEnemyBulletCollision(InvaderArmy* army)

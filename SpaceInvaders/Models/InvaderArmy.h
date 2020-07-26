@@ -4,13 +4,10 @@
 
 #include "Invaders\Invader.h"
 #include "Bullet.h"
-#include "Ship.h"
 
 class InvaderArmy
 {
 private:
-	//Side to which invaders are moving
-	Side MoveSide;
 	std::vector<Bullet> Bullets;
 	Invader** Enemies;
 	unsigned int MaxEnemies;
@@ -22,8 +19,6 @@ public:
 	~InvaderArmy();
 
 	void Draw(sf::RenderWindow& window);
-	void Move();
-	void Fire(float deltaTime);
 	void Injure(int position, float damage);
 	void DestroyBullet(int i);
 

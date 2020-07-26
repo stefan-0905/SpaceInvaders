@@ -3,7 +3,7 @@
 #include "Config.h"
 
 Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
-    : m_Player(sf::Vector2f(76.f, 48.f)), m_PlayerController(&m_Player), Army(30), cLevel(&Army), Font(Config::GetFont())
+    : m_Player(sf::Vector2f(76.f, 48.f)), m_PlayerController(&m_Player), Army(30), m_AIController(&Army), m_Level(&Army), Font(Config::GetFont())
 {
     State = GameState::StartScreen;
     // Player initialization
@@ -18,24 +18,39 @@ Game::~Game()
 {
 }
 
-void Game::HandleMoving(float deltaTime)
+void Game::Tick(float deltaTime)
 {
     if (State != GameState::Playing) return;
 
-    if (cLevel.Completed())
+    if (m_Level.Completed())
     {
-        cLevel.Next();
+        m_Level.Next();
     }
 
     // Move Invading Army Left - Right
-    Army.Move();
-    Army.Fire(deltaTime);
+    //Army.Move();
+    m_AIController.Tick(deltaTime);
+    //Army.Fire(deltaTime);
 
     // Move Player And his assets - bullets
-    m_PlayerController.Move();
-    m_Player.MoveBullets(Army);
+    m_PlayerController.Tick(deltaTime);
+    //m_Player.MoveBullets(Army);
 
+    if (!m_Player.CheckEnemyBulletCollision(&Army))
+    {
+        Over.EndWith(false);
+        State = GameState::Over;
+    }
+    else {
+        if (m_Level.GetCurrentLevel() > Level::MaxLevel)
+        {
+            Over.EndWith(true);
+            State = GameState::Over;
+        }
+    }
 
+    HpText.setString("Lives:" + std::to_string((int)m_Player.GetHP()) + "/" + std::to_string(m_Player.GetMaxHP()));
+    HpText.setPosition(WINDOW_SIZE_X - 100.f - 50.f, 10.f);
 }
 
 void Game::HandleDrawing(sf::RenderWindow& window)
@@ -59,27 +74,11 @@ void Game::HandleDrawing(sf::RenderWindow& window)
     }
     
 }
+
 void Game::DrawPlaying(sf::RenderWindow& window)
 {
-    if (!m_Player.CheckEnemyBulletCollision(&Army))
-    {
-        Over.EndWith(false);
-        State = GameState::Over;
-    }
-    else {
-        if (cLevel.GetCurrentLevel() == 4)
-        {
-            Over.EndWith(true);
-            State = GameState::Over;
-        }
-
-        m_Player.Draw(window);
-        Army.Draw(window);
-    }
-
-    HpText.setString("Lives:" + std::to_string((int)m_Player.GetHP()) + "/" + std::to_string(m_Player.GetMaxHP()));
-    HpText.setPosition(window.getSize().x - 100.f - 50.f, 10.f);
-
+    m_Player.Draw(window);
+    Army.Draw(window);
     window.draw(HpText);
 }
 
@@ -122,7 +121,7 @@ void Game::DrawOver(sf::RenderWindow& window)
 
 void Game::RestartGame()
 {
-    cLevel.StartNewGame();
+    m_Level.StartNewGame();
     m_Player.ResetShip();
     m_Player.CleanBullets();
 }

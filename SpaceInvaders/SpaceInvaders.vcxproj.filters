@@ -48,10 +48,19 @@
     <ClCompile Include="Models\Level.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Models\PlayerController.cpp">
+    <ClCompile Include="Models\EventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Models\EventHandler.cpp">
+    <ClCompile Include="Models\Controllers\BulletAIController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Controllers\PlayerController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Controllers\PlayerAIController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Invaders\Invader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,10 +113,16 @@
     <ClInclude Include="Models\Level.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\PlayerController.h">
+    <ClInclude Include="Models\EventHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Models\EventHandler.h">
+    <ClInclude Include="Models\Controllers\BulletAIController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Controllers\PlayerController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Controllers\PlayerAIController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -29,7 +29,7 @@ void Shape::SetCenteredOrigin()
 	Body.setOrigin(Size.x / 2, Size.y / 2);
 }
 
-bool Shape::Colliding(Shape* shape)
+bool Shape::Intersects(Shape* shape)
 {
 	Collider collider;
 	return collider.CheckCollision(this, shape);
