@@ -29,6 +29,7 @@ void InvaderArmy::Draw(sf::RenderWindow& window)
 {
 	for (unsigned int i = 0; i < EnemyCount; i++)
 	{
+		//TODO Maybe check killed property in Draw function
 		if (Enemies[i] && !Enemies[i]->GetKilled())
 			Enemies[i]->Draw(window);
 	}

@@ -22,11 +22,6 @@ void EventHandler::Handle(sf::Event ev, float& deltaTimeWhenUserTriesToFire)
         if (ev.key.code == sf::Mouse::Left)
         {
             m_Game->m_PlayerController.Fire(deltaTimeWhenUserTriesToFire);
-            /*if (deltaTimeWhenUserTriesToFire >= m_Game->m_Player.GetFireRate())
-            {
-                m_Game->m_Player.Fire();
-                deltaTimeWhenUserTriesToFire = 0;
-            }*/
         }
         break;
     default:

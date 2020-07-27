@@ -35,56 +35,6 @@ void Player::Draw(sf::RenderWindow& window)
 	m_Ship->Draw(window);
 }
 
-//Move player Left - Right
-void Player::Move(const Side side)
-{
-	switch (side)
-	{
-	case Side::Left:
-		m_Ship->Move(-5.f, 0.0f);
-		break;
-	case Side::Right:
-		m_Ship->Move(5.f, 0.0f);
-		break;
-	default:
-		break;
-	}
-
-	if (m_Ship->GetPosition().x < 50)
-		m_Ship->SetPosition(50, m_Ship->GetPosition().y);
-
-	if (m_Ship->GetPosition().x > 974)
-		m_Ship->SetPosition(974, m_Ship->GetPosition().y);
-}
-
-void Player::MoveBullets(InvaderArmy& army)
-{
-	for (unsigned int i = 0; i < Bullets.size(); i++)
-	{
-		Bullets[i].Move();
-
-		/// Remove if bullet misses everything and exits screen
-		if (Bullets[i].GetPosition().y <= 0)
-		{
-			Bullets.erase(Bullets.begin() + i);
-			continue;
-		}
-
-		//TODO Maybe start counting from middle of height
-
-		/// Check if bulllet hit something
-		for (unsigned int k = 0; k < army.GetEnemyCount(); k++)
-		{
-			if ( !army.GetEnemies()[k]->GetKilled() && Bullets[i].Intersects(dynamic_cast<Shape*>(army.GetEnemies()[k])) )
-			{
-				Bullets.erase(Bullets.begin() + i);
-				army.Injure(k, m_Ship->GetDamage());
-				break;
-			}
-		}
-	}
-}
-
 //Fire bullet 
 void Player::Fire()
 {
@@ -96,22 +46,6 @@ void Player::Fire()
 	bulletPosition.y -= m_Ship->GetGlobalBounds().height / 2;
 
 	Bullets.emplace_back(Bullet(bulletPosition, m_Ship->GetDamage(), Bullet::Direction::Up));
-}
-
-bool Player::CheckEnemyBulletCollision(InvaderArmy* army)
-{
-	std::vector<Bullet>* EnemyBullets = army->GetBullets();
-	for (unsigned int i = 0; i < EnemyBullets->size(); i++)
-	{
-		auto shipShape = dynamic_cast<Shape*>(m_Ship);
-		if (shipShape && EnemyBullets->at(i).Intersects(shipShape))
-		{
-			HP -= EnemyBullets->at(i).GetDamage();
-			army->DestroyBullet(i);
-		}
-	}
-
-	return HP > 0;
 }
 
 void Player::SetPosition(float x, float y)
@@ -132,3 +66,14 @@ void Player::CleanBullets()
 		Bullets.erase(Bullets.begin() + i);
 	}
 }
+
+bool Player::Intersects(Shape* shape)
+{
+	return m_Ship->Intersects(shape);
+}
+
+void Player::DecreaseHP(float damage)
+{
+	HP -= damage;
+}
+

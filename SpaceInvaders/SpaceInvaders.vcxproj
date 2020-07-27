@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CollisionDetector.cpp" />
     <ClCompile Include="Models\Bullet.cpp" />
     <ClCompile Include="CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="StartScreenUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionDetector.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Models\Bullet.h" />
     <ClInclude Include="CharacterSelectUI.h" />

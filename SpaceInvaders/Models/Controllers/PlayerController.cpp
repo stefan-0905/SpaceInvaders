@@ -16,7 +16,7 @@ void PlayerController::Tick(float deltaTime)
     {
         m_Player->GetShip()->Move(5.f, 0.0f);
     }
-
+    
     if (m_Player->GetShip()->GetPosition().x < 50)
         m_Player->SetPosition(50, m_Player->GetShip()->GetPosition().y);
 

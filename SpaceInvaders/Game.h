@@ -7,6 +7,7 @@
 #include "StartScreenUI.h"
 #include "Models/Controllers/PlayerController.h"
 #include "Models/Controllers/PlayerAIController.h"
+#include "CollisionDetector.h"
 
 enum class GameState
 {
@@ -21,6 +22,7 @@ public:
 	InvaderArmy Army;
 	PlayerAIController m_AIController;
 	Level m_Level;
+	CollisionDetector m_Detector;
 private:
 	sf::Font Font;
 	StartScreenUI StartScreen;

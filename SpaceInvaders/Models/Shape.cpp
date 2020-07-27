@@ -31,8 +31,7 @@ void Shape::SetCenteredOrigin()
 
 bool Shape::Intersects(Shape* shape)
 {
-	Collider collider;
-	return collider.CheckCollision(this, shape);
+	return Collider::CheckCollision(this, shape);
 }
 
 void Shape::SetTexture(const sf::Texture* texture)

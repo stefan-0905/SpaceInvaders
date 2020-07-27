@@ -3,7 +3,7 @@
 #include "Config.h"
 
 Game::Game(const sf::Vector2f playerSize, sf::Vector2u windowSize)
-    : m_Player(sf::Vector2f(76.f, 48.f)), m_PlayerController(&m_Player), Army(30), m_AIController(&Army), m_Level(&Army), Font(Config::GetFont())
+    : m_Player(sf::Vector2f(76.f, 48.f)), m_PlayerController(&m_Player), Army(30), m_AIController(&Army), m_Level(&Army), Font(Config::GetFont()), m_Detector(&m_Player, &Army)
 {
     State = GameState::StartScreen;
     // Player initialization
@@ -33,9 +33,9 @@ void Game::Tick(float deltaTime)
     // Move Player And his assets - bullets
     m_PlayerController.Tick(deltaTime);
 
-    //TODO Make Collision Detector
-
-    if (!m_Player.CheckEnemyBulletCollision(&Army))
+    m_Detector.Tick(deltaTime);
+    
+    if (!m_Player.Alive())
     {
         Over.EndWith(false);
         State = GameState::Over;

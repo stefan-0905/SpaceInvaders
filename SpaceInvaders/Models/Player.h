@@ -14,18 +14,19 @@ public:
 	~Player();
 
 	void Draw(sf::RenderWindow& window);
-	void Move(const Side side);
-	void MoveBullets(InvaderArmy& army);
 	void Fire();
-	bool CheckEnemyBulletCollision(InvaderArmy* army);
 	void SetPosition(float x, float y);
 	void ResetShip();
 	void CleanBullets();
+
+	bool Intersects(Shape* shape);
+	void DecreaseHP(float damage);
 
 	void SetShip(Ship* ship);
 
 	inline unsigned int GetMaxHP() const { return m_Ship->GetMaxHP(); }
 	inline float GetHP() const { return HP; }
+	inline bool Alive() const { return HP > 0; }
 	inline float GetFireRate() const { return m_Ship->GetFireSpeed(); }
 	inline sf::Vector2f GetSize() const { return Size; };
 	inline Ship* GetShip() { return m_Ship; }

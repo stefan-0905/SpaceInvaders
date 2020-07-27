@@ -5,7 +5,10 @@
 class Collider
 {
 public:
-	bool CheckCollision(Shape* shapeOne, Shape* shape);
+	Collider() = delete;
+	Collider(Collider& collider) = delete;
+
+	static bool CheckCollision(Shape* shapeOne, Shape* shape);
 };
 
 bool Collider::CheckCollision(Shape* shapeOne, Shape* shape)
