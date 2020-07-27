@@ -28,13 +28,12 @@ void Game::Tick(float deltaTime)
     }
 
     // Move Invading Army Left - Right
-    //Army.Move();
     m_AIController.Tick(deltaTime);
-    //Army.Fire(deltaTime);
 
     // Move Player And his assets - bullets
     m_PlayerController.Tick(deltaTime);
-    //m_Player.MoveBullets(Army);
+
+    //TODO Make Collision Detector
 
     if (!m_Player.CheckEnemyBulletCollision(&Army))
     {

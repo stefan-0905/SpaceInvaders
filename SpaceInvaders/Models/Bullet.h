@@ -18,6 +18,7 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void Move();
 	inline float GetDamage() const { return Damage; }
+	inline Direction GetDirection() const { return MoveDirection; }
 private:
 	float Damage;
 	Direction MoveDirection;

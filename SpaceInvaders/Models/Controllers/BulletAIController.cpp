@@ -1,5 +1,7 @@
 #include "BulletAIController.h"
 
+#include "../../Constants.h"
+
 BulletAIController::BulletAIController(std::vector<Bullet>* bullets)
 	: Bullets(bullets)
 {
@@ -16,8 +18,15 @@ void BulletAIController::Tick(float deltaTime)
 	{
 		Bullets->at(i).Move();
 
-		/// Remove if bullet misses everything and exits screen
-		if (Bullets->at(i).GetPosition().y <= 0)
+		/// Removing player bullets when they past screen
+		if (Bullets->at(i).GetDirection() == Bullet::Direction::Up && Bullets->at(i).GetPosition().y <= 0)
+		{
+			Bullets->erase(Bullets->begin() + i);
+			continue;
+		}
+
+		/// Remove enemy bullets when they past screen
+		if (Bullets->at(i).GetDirection() == Bullet::Direction::Down && Bullets->at(i).GetPosition().y > WINDOW_SIZE_Y)
 		{
 			Bullets->erase(Bullets->begin() + i);
 			continue;
