@@ -16,14 +16,14 @@ public:
 	virtual void Draw(sf::RenderWindow& window) override;
 
 	virtual void Move(float x, float y) override;
-
+	// Reset an invader, changing it's values to default ones
 	void Reset();
-
+	// Hurt an invader by the amount of damage specified and update hpinfo text
 	void Hurt(float damage);
 
 	const sf::Vector2f GetPosition() { return Ship::GetPosition(); }
 	bool GetKilled() { return Killed; }
-	float GetFireDamage() { return FireDamage; }
+	//float GetFireDamage() { return Damage; }
 };
 
 class Invader1 : public Invader
@@ -35,7 +35,7 @@ public:
 		Type = ShipType::Invader1;
 		MaxHP = 1;
 		HP = static_cast<float>(MaxHP);
-		FireDamage = 1;
+		Damage = 1;
 		FireSpeed = 0.5f;
 		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
 		Body.setTexture(&Config::GetInvader1());
@@ -51,7 +51,7 @@ public:
 		Type = ShipType::Invader2;
 		MaxHP = 2;
 		HP = static_cast<float>(MaxHP);
-		FireDamage = 1;
+		Damage = 1;
 		FireSpeed = 0.5f;
 		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
 		Body.setTexture(&Config::GetInvader2());
@@ -67,7 +67,7 @@ public:
 		Type = ShipType::Invader3;
 		MaxHP = 3;
 		HP = static_cast<float>(MaxHP);
-		FireDamage = 1;
+		Damage = 1;
 		FireSpeed = 0.5f;
 		HPInfo.setString(std::to_string((int)HP) + "/" + std::to_string(MaxHP));
 		Body.setTexture(&Config::GetInvader3());

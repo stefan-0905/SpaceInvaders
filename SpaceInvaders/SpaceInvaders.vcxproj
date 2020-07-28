@@ -160,6 +160,7 @@
     <ClCompile Include="Models\Ship.cpp" />
     <ClCompile Include="OverUI.cpp" />
     <ClCompile Include="Models\Player.cpp" />
+    <ClCompile Include="PlayingUI.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
     <ClCompile Include="StartScreenUI.cpp" />
   </ItemGroup>
@@ -176,15 +177,16 @@
     <ClInclude Include="Models\EventHandler.h" />
     <ClInclude Include="Models\Invaders\Invader.h" />
     <ClInclude Include="Models\InvaderArmy.h" />
-    <ClInclude Include="Models\Killable.h" />
     <ClInclude Include="Models\Level.h" />
     <ClInclude Include="Models\Controllers\PlayerController.h" />
     <ClInclude Include="Models\Shape.h" />
     <ClInclude Include="OverUI.h" />
     <ClInclude Include="Models\Player.h" />
     <ClInclude Include="Models\Ship.h" />
+    <ClInclude Include="PlayingUI.h" />
     <ClInclude Include="SpaceInvaders.h" />
     <ClInclude Include="StartScreenUI.h" />
+    <ClInclude Include="UIBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

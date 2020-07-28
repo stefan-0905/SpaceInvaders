@@ -11,6 +11,7 @@ public:
 	Shape() = delete;
 	Shape(float width, float height);
 
+	// Get texture
 	inline const sf::Texture* GetTexture() { return Body.getTexture(); }
 	// Get the position of a shape
 	inline sf::Vector2f GetPosition() const { return Body.getPosition(); }
@@ -20,12 +21,13 @@ public:
 	void SetPosition(float x, float y);
 	// Set size of a shape
 	void SetSize(float width, float height);
-
+	// Set fill color
 	void SetFillColor(sf::Color color);
-
+	// Set origin as centered
 	void SetCenteredOrigin();
+	// Check if shape intersects with shape
 	bool Intersects(Shape* shape);
-
+	//Set texture
 	void SetTexture(const sf::Texture* texture);
 	// Move shape
 	virtual void Move(float x, float y);

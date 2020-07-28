@@ -8,6 +8,7 @@
 #include "Models/Controllers/PlayerController.h"
 #include "Models/Controllers/PlayerAIController.h"
 #include "CollisionDetector.h"
+#include "PlayingUI.h"
 
 enum class GameState
 {
@@ -17,35 +18,20 @@ enum class GameState
 class Game
 {
 public:
-	Player m_Player;
-	PlayerController m_PlayerController;
-	InvaderArmy Army;
-	PlayerAIController m_AIController;
-	Level m_Level;
-	CollisionDetector m_Detector;
+	PlayingUI Playing;
 private:
-	sf::Font Font;
 	StartScreenUI StartScreen;
-	OverUI Over;
 	CharacterSelectUI CharacterSelect;
+	OverUI Over;
 	GameState State;
-	sf::Text HpText;
+
+	UIBase* CurrentState;
 
 public:
-	Game(const sf::Vector2f playerSize, const sf::Vector2u windowSize);
+	Game(const sf::Vector2f playerSize);
 	~Game();
 	void Tick(float deltaTime);
 	void HandleDrawing(sf::RenderWindow& window);
 	void HandleStates(sf::Event event, sf::RenderWindow& window);
-
-private:
-	void DrawPlaying(sf::RenderWindow& window);
-	void DrawStartScreen(sf::RenderWindow& window);
-	void DrawCharacherSelect(sf::RenderWindow& window);
-	void DrawOver(sf::RenderWindow& window);
-
-	void RestartGame();
-
-
 };
 

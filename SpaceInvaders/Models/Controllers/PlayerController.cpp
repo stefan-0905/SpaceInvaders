@@ -3,10 +3,13 @@
 PlayerController::PlayerController(Player* p)
 	: m_Player(p), m_BulletAIController(p->GetBullets())
 {
+    FiringCounter = 0.f;
 }
 
 void PlayerController::Tick(float deltaTime)
 {
+    FiringCounter += deltaTime;
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         m_Player->GetShip()->Move(-5.f, 0.0f);
@@ -26,11 +29,11 @@ void PlayerController::Tick(float deltaTime)
     m_BulletAIController.Tick(deltaTime);
 }
 
-void PlayerController::Fire(float& deltaTime)
+void PlayerController::Fire()
 {
-    if (deltaTime >= m_Player->GetFireRate())
+    if (FiringCounter >= m_Player->GetFireRate())
     {
         m_Player->Fire();
-        deltaTime = 0;
+        FiringCounter = 0;
     }
 }

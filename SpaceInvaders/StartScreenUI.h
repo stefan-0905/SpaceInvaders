@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "UIBase.h"
 
-class StartScreenUI
+class StartScreenUI : public UIBase
 {
 public:
 	bool StartSelected;
@@ -15,5 +16,13 @@ public:
 	StartScreenUI();
 	~StartScreenUI();
 
-	void Draw(sf::RenderWindow& window);
+	void Tick(float deltaTime) override;
+	void Draw(sf::RenderWindow& window) override;
+
+private:
+	void InitStartButton();
+	void InitExitButton();
+	void InitBanner();
+	void SelectStart();
+	void SelectExit();
 };

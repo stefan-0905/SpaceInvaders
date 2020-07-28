@@ -8,9 +8,11 @@ class PlayerController
 protected:
 	Player* m_Player;
 	BulletAIController m_BulletAIController;
+
+	float FiringCounter;
 public:
 	PlayerController(Player* p);
 
 	void Tick(float deltaTime);
-	void Fire(float& deltaTime);
+	void Fire();
 };

@@ -10,6 +10,6 @@ private:
 	sf::RenderWindow* m_Window;
 public:
 	EventHandler(Game* mGame, sf::RenderWindow* window);
-
-	void Handle(sf::Event ev, float& deltaTimeWhenUserTriesToFire);
+	// Handle an event
+	void Handle(sf::Event ev);
 };

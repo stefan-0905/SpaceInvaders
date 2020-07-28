@@ -5,7 +5,7 @@ EventHandler::EventHandler(Game* mGame, sf::RenderWindow* window)
 {
 }
 
-void EventHandler::Handle(sf::Event ev, float& deltaTimeWhenUserTriesToFire)
+void EventHandler::Handle(sf::Event ev)
 {
     switch (ev.type)
     {
@@ -21,7 +21,7 @@ void EventHandler::Handle(sf::Event ev, float& deltaTimeWhenUserTriesToFire)
     case sf::Event::MouseButtonPressed:
         if (ev.key.code == sf::Mouse::Left)
         {
-            m_Game->m_PlayerController.Fire(deltaTimeWhenUserTriesToFire);
+            m_Game->Playing.m_PlayerController.Fire();
         }
         break;
     default:

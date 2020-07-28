@@ -3,7 +3,6 @@
 
 #include "../Config.h"
 #include "Shape.h"
-#include "Killable.h"
 
 enum class ShipType
 {
@@ -13,16 +12,22 @@ enum class ShipType
 class Ship : public Shape
 {
 protected:
-	//sf::RectangleShape Body;
+	// Maximum HP
 	unsigned int MaxHP;
+	// Current ammount of HP
 	float HP;
+	// Is killed
 	bool Killed;
+	// Ship type
 	ShipType Type;
-	float FireDamage;
+	// Damage
+	float Damage;
+	// Firing speed
 	float FireSpeed;
 public:
 	Ship(float width, float height);
 
+	// Set to not killed
 	void ResetKilled();
 
 	virtual void Move(float x, float y) override;
@@ -31,7 +36,7 @@ public:
 	inline ShipType GetType() const { return Type; }
 	inline unsigned int GetMaxHP() const { return MaxHP; }
 	inline float GetFireSpeed() const { return FireSpeed; }
-	inline float GetDamage() const { return FireDamage; }
+	inline float GetDamage() const { return Damage; }
 };
 
 
@@ -45,7 +50,7 @@ public:
 		Type = ShipType::Slinger;
 		MaxHP = 5;
 		HP = static_cast<float>(MaxHP);
-		FireDamage = 1;
+		Damage = 1;
 		FireSpeed = 0.5f;
 
 		Body.setTexture(&Config::GetSlingerTexture());
@@ -61,7 +66,7 @@ public:
 		Type = ShipType::Bazooker;
 		MaxHP = 10;
 		HP = static_cast<float>(MaxHP);
-		FireDamage = 3;
+		Damage = 3;
 		FireSpeed = 0.1f;
 
 		Body.setTexture(&Config::GetBazookerTexture());

@@ -20,7 +20,9 @@ public:
 	inline float GetDamage() const { return Damage; }
 	inline Direction GetDirection() const { return MoveDirection; }
 private:
+	// Damage bullet inflicts
 	float Damage;
+	// Direction in which bullet moves
 	Direction MoveDirection;
 };
 

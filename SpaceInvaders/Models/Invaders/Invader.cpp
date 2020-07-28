@@ -5,7 +5,7 @@ Invader::Invader(float width, float height, sf::Vector2f position)
 {
 	MaxHP = 1;
 	HP = static_cast<float>(MaxHP);
-	FireDamage = 1;
+	Damage = 1;
 	FireSpeed = 0.5f;
 
 	HPInfo.setFont(Config::GetFont());

@@ -53,9 +53,9 @@ void InvaderArmy::Injure(int position, float damage)
 	}
 }
 
-void InvaderArmy::DestroyBullet(int i)
+void InvaderArmy::DestroyBullet(int position)
 {
-	Bullets.erase(Bullets.begin() + i);
+	Bullets.erase(Bullets.begin() + position);
 }
 
 void InvaderArmy::SetEnemyCount(unsigned int count)

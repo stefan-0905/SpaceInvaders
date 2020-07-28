@@ -1,9 +1,9 @@
 #pragma once
 
 // Window width size
-const unsigned int WINDOW_SIZE_X = 1024;
+const unsigned int WINDOW_SIZE_X = 1280;
 // Window height size
-const unsigned int WINDOW_SIZE_Y = 512;
+const unsigned int WINDOW_SIZE_Y = 960;
 
 // Number of invaders per row when drawing them
 const unsigned int INVADERS_PER_ROW = 10;

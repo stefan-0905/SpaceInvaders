@@ -7,7 +7,7 @@ class Collider
 public:
 	Collider() = delete;
 	Collider(Collider& collider) = delete;
-
+	// Check if two Shapes overlap 
 	static bool CheckCollision(Shape* shapeOne, Shape* shape);
 };
 

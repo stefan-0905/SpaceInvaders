@@ -3,9 +3,9 @@
 #include <vector>
 #include "Models\Ship.h"
 #include "Constants.h"
+#include "UIBase.h"
 
-
-class CharacterSelectUI
+class CharacterSelectUI : public UIBase
 {
 private:
 	Ship* Ships[CS_NUMBER_OF_SHIPS];
@@ -21,8 +21,16 @@ public:
 	CharacterSelectUI();
 	~CharacterSelectUI();
 
+	void Tick(float deltaTime) override;
+	void Draw(sf::RenderWindow& window) override;
+
 	inline Ship* GetSelectedShip() { return SelectedShip; }
 	inline const sf::Texture* GetTexture() { return SelectedShip->GetTexture(); }
-	void Draw(sf::RenderWindow& window);
+
+private: 
+	void InitTitle();
+	void InitShips();
+	void InitSelector();
+
 };
 

@@ -50,10 +50,12 @@ void Level::Next()
 
 void Level::Generate()
 {
+	// Set adequate enemy count based on level
 	Army->SetEnemyCount(GetEnemyCountBasedOnCurrentLevel());
 
 	Invader** mEnemies = Army->GetEnemies();
 
+	/// Delete previous enemies
 	for (int i = 0; i < 30; i++)
 		if (mEnemies[i])
 		{

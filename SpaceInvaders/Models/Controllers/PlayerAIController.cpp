@@ -6,6 +6,7 @@ PlayerAIController::PlayerAIController(InvaderArmy* army)
 	: Army(army), m_BulletAIController(Army->GetBullets())
 {
 	MoveSide = Side::Left;
+	FireRate = 1.f;
 }
 
 void PlayerAIController::Tick(float deltaTime)
@@ -26,7 +27,12 @@ void PlayerAIController::Tick(float deltaTime)
 	if (Army->GetEnemies()[enemyCount - 1] && Army->GetEnemies()[enemyCount - 1]->GetPosition().x > 924)
 		MoveSide = Side::Left;
 
-	Fire(deltaTime);
+	static float totalTime = 0.f;
+	totalTime += deltaTime;
+
+	if(totalTime > FireRate)
+		Fire(totalTime);
+
 	m_BulletAIController.Tick(deltaTime);
 }
 
@@ -44,13 +50,8 @@ sf::Vector2f PlayerAIController::GetOffset()
 	}
 }
 
-void PlayerAIController::Fire(float deltaTime)
+void PlayerAIController::Fire(float& totalTime)
 {
-	static float totalTime = 0.f;
-	totalTime += deltaTime;
-
-	if (totalTime < 1.f) return;
-
 	/// Get random column for the bullet
 	int column = rand() % INVADERS_PER_ROW;
 
@@ -66,7 +67,7 @@ void PlayerAIController::Fire(float deltaTime)
 		{
 			sf::Vector2f invaderPosition = enemy->GetPosition();
 			invaderPosition.y += 50;
-			Army->GetBullets()->emplace_back(Bullet(invaderPosition, enemy->GetFireDamage(), Bullet::Direction::Down));
+			Army->GetBullets()->emplace_back(Bullet(invaderPosition, enemy->GetDamage(), Bullet::Direction::Down));
 			totalTime -= 1.f;
 			break;
 		}
