@@ -21,10 +21,10 @@ void PlayerAIController::Tick(float deltaTime)
 	}
 
 	/// Check if enemies are nearing the edge of the screen 
-	if (Army->GetEnemies()[0] && Army->GetEnemies()[0]->GetPosition().x < 100)
+	if (Army->GetEnemies()[0] && Army->GetEnemies()[0]->GetPosition().x < 50)
 		MoveSide = Side::Right;
 
-	if (Army->GetEnemies()[enemyCount - 1] && Army->GetEnemies()[enemyCount - 1]->GetPosition().x > 924)
+	if (Army->GetEnemies()[enemyCount - 1] && Army->GetEnemies()[enemyCount - 1]->GetPosition().x > WINDOW_SIZE_X - 50)
 		MoveSide = Side::Left;
 
 	static float totalTime = 0.f;

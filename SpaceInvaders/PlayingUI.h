@@ -7,6 +7,8 @@
 #include "Models/Level.h"
 #include "UIBase.h"
 
+class Game;
+
 class PlayingUI : public UIBase
 {
 public:
@@ -17,11 +19,13 @@ public:
 	Level m_Level;
 	CollisionDetector m_Detector;
 
+	Game* m_Game;
+
 private:
 	sf::Text HpText;
 
 public:
-	PlayingUI(const sf::Vector2f playerSize);
+	PlayingUI(const sf::Vector2f playerSize, Game* mGame);
 	~PlayingUI();
 
 	void Tick(float deltaTime) override;
@@ -29,5 +33,8 @@ public:
 
 	void SetShip(Ship* ship);
 	void RestartGame();
+
+private:
+	void InitHpText();
 };
 
