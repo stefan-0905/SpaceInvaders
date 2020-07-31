@@ -1,3 +1,7 @@
+#include "SFML/Graphics/RenderWindow.hpp"
+#include "Shapes/Ship.h"
+
+
 #include "Player.h"
 
 #include "../Config.h"
@@ -22,6 +26,16 @@ void Player::SetShip(Ship* ship)
 	m_Ship->SetSize(Size.x, Size.y);
 	m_Ship->SetPosition(WINDOW_SIZE_X / 2, WINDOW_SIZE_Y - m_Ship->GetGlobalBounds().height);
 	m_Ship->SetCenteredOrigin();
+}
+
+unsigned int Player::GetMaxHP() const
+{
+	return m_Ship->GetMaxHP();
+}
+
+float Player::GetFireRate() const
+{
+	return m_Ship->GetFireSpeed();
 }
 
 //Draw player on screen

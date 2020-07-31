@@ -145,48 +145,56 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CollisionDetector.cpp" />
-    <ClCompile Include="Models\Bullet.cpp" />
-    <ClCompile Include="CharacterSelectUI.cpp" />
+    <ClCompile Include="Models\CollisionDetector.cpp" />
+    <ClCompile Include="Models\Shapes\Bullet.cpp" />
+    <ClCompile Include="UI\CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Models\Controllers\BulletAIController.cpp" />
     <ClCompile Include="Models\Controllers\PlayerAIController.cpp" />
-    <ClCompile Include="Models\EventHandler.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="Models\InvaderArmy.cpp" />
-    <ClCompile Include="Models\Invaders\Invader.cpp" />
+    <ClCompile Include="Models\Shapes\Invader.cpp" />
     <ClCompile Include="Models\Level.cpp" />
     <ClCompile Include="Models\Controllers\PlayerController.cpp" />
-    <ClCompile Include="Models\Shape.cpp" />
-    <ClCompile Include="Models\Ship.cpp" />
-    <ClCompile Include="OverUI.cpp" />
+    <ClCompile Include="Models\Shapes\Shape.cpp" />
+    <ClCompile Include="Models\Shapes\Ship.cpp" />
+    <ClCompile Include="UI\OverUI.cpp" />
     <ClCompile Include="Models\Player.cpp" />
-    <ClCompile Include="PlayingUI.cpp" />
+    <ClCompile Include="UI\PlayingUI.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
-    <ClCompile Include="StartScreenUI.cpp" />
+    <ClCompile Include="UI\StartScreenUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CollisionDetector.h" />
+    <ClInclude Include="Models\CollisionDetector.h" />
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="Models\Bullet.h" />
-    <ClInclude Include="CharacterSelectUI.h" />
+    <ClInclude Include="Models\Shapes\Bazooker.h" />
+    <ClInclude Include="Models\Shapes\Bullet.h" />
+    <ClInclude Include="UI.hpp" />
+    <ClInclude Include="UI\CharacterSelectUI.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Models\Controllers\BulletAIController.h" />
     <ClInclude Include="Models\Collider.h" />
     <ClInclude Include="Models\Controllers\PlayerAIController.h" />
-    <ClInclude Include="Models\EventHandler.h" />
-    <ClInclude Include="Models\Invaders\Invader.h" />
+    <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="Models\Invaders.hpp" />
+    <ClInclude Include="Models\Shapes\Invader.h" />
     <ClInclude Include="Models\InvaderArmy.h" />
+    <ClInclude Include="Models\Shapes\Invader1.h" />
+    <ClInclude Include="Models\Shapes\Invader2.h" />
+    <ClInclude Include="Models\Shapes\Invader3.h" />
     <ClInclude Include="Models\Level.h" />
     <ClInclude Include="Models\Controllers\PlayerController.h" />
-    <ClInclude Include="Models\Shape.h" />
-    <ClInclude Include="OverUI.h" />
+    <ClInclude Include="Models\Shapes\Shape.h" />
+    <ClInclude Include="Models\Shapes\Slinger.h" />
+    <ClInclude Include="Models\Ships.hpp" />
+    <ClInclude Include="UI\OverUI.h" />
     <ClInclude Include="Models\Player.h" />
-    <ClInclude Include="Models\Ship.h" />
-    <ClInclude Include="PlayingUI.h" />
+    <ClInclude Include="Models\Shapes\Ship.h" />
+    <ClInclude Include="UI\PlayingUI.h" />
     <ClInclude Include="SpaceInvaders.h" />
-    <ClInclude Include="StartScreenUI.h" />
-    <ClInclude Include="UIBase.h" />
+    <ClInclude Include="UI\StartScreenUI.h" />
+    <ClInclude Include="UI\UIBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

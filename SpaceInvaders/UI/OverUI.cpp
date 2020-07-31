@@ -1,7 +1,9 @@
-#include "OverUI.h"
+#include <SFML\Graphics\RenderWindow.hpp>
 
-#include "Config.h"
-#include "Constants.h"
+#include "../Constants.h"
+#include "../Config.h"
+
+#include "OverUI.h"
 
 OverUI::OverUI()
 	: Won(false), AgainSelected(true)

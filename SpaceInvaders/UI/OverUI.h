@@ -1,6 +1,8 @@
 #pragma once
-#include <SFML\Graphics.hpp>
 #include "UIBase.h"
+#include "SFML/Graphics/Text.hpp"
+
+class RenderWindow;
 
 class OverUI : public UIBase
 {

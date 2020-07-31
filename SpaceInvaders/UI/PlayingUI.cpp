@@ -1,6 +1,8 @@
-#include "PlayingUI.h"
+#include "SFML/Graphics/RenderWindow.hpp"
+#include "../Game.h"
+#include "../Config.h"
 
-#include "Game.h"
+#include "PlayingUI.h"
 
 PlayingUI::PlayingUI(const sf::Vector2f playerSize, Game* mGame)
 	: m_Player(sf::Vector2f(playerSize.x, playerSize.y)), m_PlayerController(&m_Player), Army(30), m_AIController(&Army), m_Level(&Army), m_Detector(&m_Player, &Army)

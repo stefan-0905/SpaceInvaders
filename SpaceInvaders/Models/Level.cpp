@@ -1,3 +1,7 @@
+#include "InvaderArmy.h"
+//TODO Create One File for all invader includes
+#include "Invaders.hpp"
+
 #include "Level.h"
 #include "../Constants.h"
 
@@ -46,6 +50,11 @@ void Level::Next()
 {
 	++Current;
 	if(Current <= MaxLevel) Generate();
+}
+
+bool Level::Completed() const
+{
+	return Army->EnemiesDestroyed();
 }
 
 void Level::Generate()

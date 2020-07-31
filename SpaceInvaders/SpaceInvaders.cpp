@@ -1,13 +1,12 @@
 #include <iostream>
-#include <vector>
-#include <SFML/Graphics.hpp>
 
-#include "Models\Player.h"
-#include "Models\InvaderArmy.h"
-#include "Models\Bullet.h"
+#include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/System/Clock.hpp"
+#include "SFML/Window/Event.hpp"
+
 #include "Game.h"
+#include "EventHandler.h"
 #include "SpaceInvaders.h"
-#include "Models/EventHandler.h"
 
 int main()
 {

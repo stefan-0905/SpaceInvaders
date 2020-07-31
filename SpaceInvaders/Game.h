@@ -1,14 +1,6 @@
 #pragma once
-#include "Models/Player.h"
-#include "Models/Level.h"
-#include "Models/InvaderArmy.h"
-#include "OverUI.h"
-#include "CharacterSelectUI.h"
-#include "StartScreenUI.h"
-#include "Models/Controllers/PlayerController.h"
-#include "Models/Controllers/PlayerAIController.h"
-#include "CollisionDetector.h"
-#include "PlayingUI.h"
+
+#include "UI.hpp"
 
 enum class GameState
 {

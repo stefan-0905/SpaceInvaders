@@ -1,14 +1,25 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "SFML/System/Vector2.hpp"
 
-#include "Bullet.h"
+#include "Shapes/Bullet.h"
 #include "InvaderArmy.h"
-#include "Ship.h"
 #include "../Constants.h"
+
+class RenderWindow;
+class Ship;
 
 class Player
 {
+private:
+	// Player's ship size
+	sf::Vector2f Size;
+	// Player's ship
+	Ship* m_Ship;
+	// Player's fired bullets
+	std::vector<Bullet> Bullets;
+
+	float HP;
 public:
 	Player(const sf::Vector2f dim);
 	~Player();
@@ -29,28 +40,19 @@ public:
 	// Set player's ship
 	void SetShip(Ship* ship);
 	// Get player's max hp
-	inline unsigned int GetMaxHP() const { return m_Ship->GetMaxHP(); }
+	unsigned int GetMaxHP() const;
 	// Get player's hp
 	inline float GetHP() const { return HP; }
 	// Check if player is alive
 	inline bool Alive() const { return HP > 0; }
 	// Get fire rate of player's selected ship
-	inline float GetFireRate() const { return m_Ship->GetFireSpeed(); }
+	float GetFireRate() const;
 	// Get player's size
 	inline sf::Vector2f GetSize() const { return Size; };
 	// Get player's ship
 	inline Ship* GetShip() { return m_Ship; }
 	// Get player's bullets
 	inline std::vector<Bullet>* GetBullets() { return &Bullets; }
-private:
-	// Player's ship size
-	sf::Vector2f Size;
-	// Player's ship
-	Ship* m_Ship;
-	// Player's fired bullets
-	std::vector<Bullet> Bullets;
-
-	float HP;
 
 };
 

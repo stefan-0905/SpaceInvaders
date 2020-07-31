@@ -1,3 +1,5 @@
+#include "SFML/Graphics/RenderWindow.hpp"
+
 #include "Ship.h"
 
 Ship::Ship(float width, float height)

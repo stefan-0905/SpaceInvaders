@@ -1,9 +1,11 @@
 #pragma once
-#include <SFML\Graphics.hpp>
-#include <vector>
-#include "Models\Ship.h"
-#include "Constants.h"
+#include <SFML\Graphics\Text.hpp>
+#include "../Constants.h"
 #include "UIBase.h"
+
+class Ship;
+class RenderWindow;
+class Texture;
 
 class CharacterSelectUI : public UIBase
 {
@@ -25,7 +27,7 @@ public:
 	void Draw(sf::RenderWindow& window) override;
 
 	inline Ship* GetSelectedShip() { return SelectedShip; }
-	inline const sf::Texture* GetTexture() { return SelectedShip->GetTexture(); }
+	const sf::Texture* GetTexture();
 
 private: 
 	void InitTitle();

@@ -1,8 +1,9 @@
 #pragma once
-#include <SFML\Graphics.hpp>
 
-#include "../Config.h"
+#include "../../Config.h"
 #include "Shape.h"
+
+class RenderWindow;
 
 enum class ShipType
 {
@@ -37,38 +38,4 @@ public:
 	inline unsigned int GetMaxHP() const { return MaxHP; }
 	inline float GetFireSpeed() const { return FireSpeed; }
 	inline float GetDamage() const { return Damage; }
-};
-
-
-
-class Slinger : public Ship
-{
-public:
-	Slinger(float width, float height)
-		: Ship(width, height)
-	{
-		Type = ShipType::Slinger;
-		MaxHP = 5;
-		HP = static_cast<float>(MaxHP);
-		Damage = 1;
-		FireSpeed = 0.5f;
-
-		Body.setTexture(&Config::GetSlingerTexture());
-	}
-};
-
-class Bazooker : public Ship
-{
-public:
-	Bazooker(float width, float height)
-		: Ship(width, height)
-	{
-		Type = ShipType::Bazooker;
-		MaxHP = 10;
-		HP = static_cast<float>(MaxHP);
-		Damage = 2;
-		FireSpeed = 1.f;
-
-		Body.setTexture(&Config::GetBazookerTexture());
-	}
 };

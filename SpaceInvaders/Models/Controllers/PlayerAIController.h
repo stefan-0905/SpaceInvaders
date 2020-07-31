@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../InvaderArmy.h"
 #include "BulletAIController.h"
+
+class InvaderArmy;
 
 enum class Side
 {

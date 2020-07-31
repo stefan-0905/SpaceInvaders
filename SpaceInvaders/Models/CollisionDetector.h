@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Models/Player.h"
-#include "Models/InvaderArmy.h"
+class Player;
+class InvaderArmy;
 
 class CollisionDetector
 {

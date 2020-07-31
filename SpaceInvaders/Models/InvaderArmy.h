@@ -2,8 +2,10 @@
 
 #include <vector>
 
-#include "Invaders\Invader.h"
-#include "Bullet.h"
+#include "Shapes/Bullet.h"
+
+class Invader;
+class RenderWindow;
 
 class InvaderArmy
 {

@@ -1,4 +1,5 @@
-#include <iostream>
+#include "Shapes/Invader.h"
+#include "SFML/Graphics/RenderWindow.hpp"
 
 #include "InvaderArmy.h"
 #include "../Constants.h"

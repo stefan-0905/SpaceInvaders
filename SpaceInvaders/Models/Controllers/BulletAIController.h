@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Bullet.h"
+#include "../Shapes/Bullet.h"
 
 class BulletAIController
 {

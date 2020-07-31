@@ -1,12 +1,14 @@
 #pragma once
-#include "SFML/Graphics.hpp"
-#include "Models/Player.h"
-#include "Models/Controllers/PlayerController.h"
-#include "Models/Controllers/PlayerAIController.h"
-#include "CollisionDetector.h"
-#include "Models/Level.h"
+#include "SFML/Graphics/Text.hpp"
+#include "../Models/Player.h"
+#include "../Models/Controllers/PlayerController.h"
+#include "../Models/Controllers/PlayerAIController.h"
+#include "../Models/CollisionDetector.h"
+#include "../Models/Level.h"
+
 #include "UIBase.h"
 
+class RenderWindow;
 class Game;
 
 class PlayingUI : public UIBase

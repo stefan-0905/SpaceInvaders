@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Invaders/Invader.h"
-#include "InvaderArmy.h"
+class InvaderArmy;
 
 class Level
 {
@@ -27,5 +26,5 @@ public:
 	// Get current level
 	inline unsigned int GetCurrentLevel() const { return Current; }
 	// Check if level is completed. It's completed if all enemies are destroyed.
-	inline bool Completed() const { return Army->EnemiesDestroyed(); }
+	bool Completed() const;
 };

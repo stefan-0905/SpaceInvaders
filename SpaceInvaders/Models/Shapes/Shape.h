@@ -1,6 +1,12 @@
 #pragma once
 
-#include "SFML/Graphics.hpp"
+#include "SFML/System/Vector2.hpp"
+#include "SFML/Graphics/RectangleShape.hpp"
+#include "SFML/Graphics/Rect.hpp"
+#include "SFML/Graphics/Color.hpp"
+
+class Texture;
+class RenderWindow;
 
 class Shape
 {

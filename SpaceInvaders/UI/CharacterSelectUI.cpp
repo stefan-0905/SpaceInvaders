@@ -1,6 +1,10 @@
+#include "../Models/Ships.hpp"
+#include "SFML/Graphics/Texture.hpp"
+#include "SFML/Graphics/RenderWindow.hpp"
+
 #include "CharacterSelectUI.h"
-#include "Config.h"
-#include "Constants.h"
+#include "../Config.h"
+#include "../Constants.h"
 
 
 CharacterSelectUI::CharacterSelectUI()
@@ -50,6 +54,11 @@ void CharacterSelectUI::Draw(sf::RenderWindow& window)
 
 	window.draw(Title);
 	Selector.Draw(window);
+}
+
+const sf::Texture* CharacterSelectUI::GetTexture()
+{
+	return SelectedShip->GetTexture();
 }
 
 void CharacterSelectUI::InitTitle()

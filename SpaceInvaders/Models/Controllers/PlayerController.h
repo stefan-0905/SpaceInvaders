@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../Player.h"
 #include "BulletAIController.h"
+
+class Player;
 
 class PlayerController
 {

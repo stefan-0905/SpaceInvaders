@@ -1,3 +1,6 @@
+#include "../Player.h"
+#include "../Shapes/Ship.h"
+
 #include "PlayerController.h"
 
 PlayerController::PlayerController(Player* p)

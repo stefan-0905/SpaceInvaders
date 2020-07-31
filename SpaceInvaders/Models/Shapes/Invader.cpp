@@ -18,6 +18,10 @@ Invader::Invader(float width, float height, sf::Vector2f position)
 	Body.setTexture(&Config::GetInvader1());
 }
 
+Invader::~Invader()
+{
+}
+
 void Invader::Draw(sf::RenderWindow& window)
 {
 	window.draw(Body);

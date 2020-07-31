@@ -1,6 +1,11 @@
 #pragma once
-#include <SFML\Graphics.hpp>
+
 #include "UIBase.h"
+#include "SFML/Graphics/Text.hpp"
+#include "SFML/Graphics/Texture.hpp"
+#include "SFML/Graphics/RectangleShape.hpp"
+
+class RenderWindow;
 
 class StartScreenUI : public UIBase
 {

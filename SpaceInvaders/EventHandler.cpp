@@ -1,3 +1,7 @@
+#include "SFML/Graphics/RenderWindow.hpp"
+#include "SFML/Window/Event.hpp"
+#include "Game.h"
+
 #include "EventHandler.h"
 
 EventHandler::EventHandler(Game* mGame, sf::RenderWindow* window)
@@ -5,7 +9,7 @@ EventHandler::EventHandler(Game* mGame, sf::RenderWindow* window)
 {
 }
 
-void EventHandler::Handle(sf::Event ev)
+void EventHandler::Handle(sf::Event& ev)
 {
     switch (ev.type)
     {

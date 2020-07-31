@@ -1,7 +1,8 @@
 #pragma once
 
-#include "SFML/Window/Event.hpp"
-#include "../Game.h"
+class Event;
+class RendererWindow;
+class Game;
 
 class EventHandler
 {
@@ -11,5 +12,5 @@ private:
 public:
 	EventHandler(Game* mGame, sf::RenderWindow* window);
 	// Handle an event
-	void Handle(sf::Event ev);
+	void Handle(sf::Event& ev);
 };

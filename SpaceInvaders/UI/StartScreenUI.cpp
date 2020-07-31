@@ -1,6 +1,9 @@
+#include "SFML/Graphics/RenderWindow.hpp"
+
+#include "../Constants.h"
+#include "../Config.h"
+
 #include "StartScreenUI.h"
-#include "Config.h"
-#include "Constants.h"
 
 StartScreenUI::StartScreenUI()
     : Banner(sf::Vector2f(BANNER_WIDTH, BANNER_HEIGHT))

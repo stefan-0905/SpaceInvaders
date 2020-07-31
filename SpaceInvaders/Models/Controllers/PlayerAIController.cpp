@@ -1,3 +1,5 @@
+#include "../InvaderArmy.h"
+#include "../Shapes/Invader.h"
 #include "PlayerAIController.h"
 
 #include "../../Constants.h"

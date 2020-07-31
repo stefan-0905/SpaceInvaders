@@ -1,3 +1,7 @@
+#include "Player.h"
+#include "InvaderArmy.h"
+#include "Shapes/Invader.h"
+
 #include "CollisionDetector.h"
 
 CollisionDetector::CollisionDetector(Player* mPlayer, InvaderArmy* mArmy)
@@ -34,7 +38,7 @@ void CollisionDetector::CheckPlayerBulletCollision()
 		/// Check if bulllet hit something
 		for (unsigned int k = 0; k < m_Army->GetEnemyCount(); k++)
 		{
-			auto enemy = m_Army->GetEnemies()[k];
+			Invader* enemy = m_Army->GetEnemies()[k];
 			if (!enemy->GetKilled() && playerBullets->at(i).Intersects(enemy))
 			{
 				playerBullets->erase(playerBullets->begin() + i);
