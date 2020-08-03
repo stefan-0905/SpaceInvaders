@@ -8,7 +8,6 @@ public:
 	Slinger(float width, float height)
 		: Ship(width, height)
 	{
-		Type = ShipType::Slinger;
 		MaxHP = 5;
 		HP = static_cast<float>(MaxHP);
 		Damage = 1;

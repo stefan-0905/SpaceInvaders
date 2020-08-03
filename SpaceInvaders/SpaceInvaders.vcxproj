@@ -145,8 +145,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Models\ECS\Manager.cpp" />
+    <ClCompile Include="Models\ECS\AActor.cpp" />
     <ClCompile Include="Models\CollisionDetector.cpp" />
+    <ClCompile Include="Models\ECS\UCombatComponent.cpp" />
+    <ClCompile Include="Models\ECS\UHealthComponent.cpp" />
+    <ClCompile Include="Models\ECS\UHealthIndicatorComponent.cpp" />
+    <ClCompile Include="Models\ECS\UPositionComponent.cpp" />
     <ClCompile Include="Models\Shapes\Bullet.cpp" />
+    <ClCompile Include="Models\Utils.cpp" />
+    <ClCompile Include="Models\Utils.h" />
     <ClCompile Include="UI\CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Models\Controllers\BulletAIController.cpp" />
@@ -163,10 +171,18 @@
     <ClCompile Include="UI\PlayingUI.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
     <ClCompile Include="UI\StartScreenUI.cpp" />
+    <ClCompile Include="Models\ECS\USpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Models\ECS\Manager.h" />
+    <ClInclude Include="Models\ECS\AActor.h" />
     <ClInclude Include="Models\CollisionDetector.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Models\ECS\ECS.h" />
+    <ClInclude Include="Models\ECS\UCombatComponent.h" />
+    <ClInclude Include="Models\ECS\UHealthComponent.h" />
+    <ClInclude Include="Models\ECS\UHealthIndicatorComponent.h" />
+    <ClInclude Include="Models\ECS\UPositionComponent.h" />
     <ClInclude Include="Models\Shapes\Bazooker.h" />
     <ClInclude Include="Models\Shapes\Bullet.h" />
     <ClInclude Include="UI.hpp" />
@@ -195,6 +211,7 @@
     <ClInclude Include="SpaceInvaders.h" />
     <ClInclude Include="UI\StartScreenUI.h" />
     <ClInclude Include="UI\UIBase.h" />
+    <ClInclude Include="Models\ECS\USpriteComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,11 +5,6 @@
 
 class RenderWindow;
 
-enum class ShipType
-{
-	Undefined = 0, Slinger, Bazooker, Invader1, Invader2, Invader3
-};
-
 class Ship : public Shape
 {
 protected:
@@ -19,8 +14,6 @@ protected:
 	float HP;
 	// Is killed
 	bool Killed;
-	// Ship type
-	ShipType Type;
 	// Damage
 	float Damage;
 	// Firing speed
@@ -34,7 +27,6 @@ public:
 	virtual void Move(float x, float y) override;
 	virtual void Draw(sf::RenderWindow& window);
 
-	inline ShipType GetType() const { return Type; }
 	inline unsigned int GetMaxHP() const { return MaxHP; }
 	inline float GetFireSpeed() const { return FireSpeed; }
 	inline float GetDamage() const { return Damage; }

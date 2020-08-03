@@ -5,7 +5,6 @@
 Ship::Ship(float width, float height)
 	: Shape(width, height)
 {
-	Type = ShipType::Undefined;
 	Killed = false;
 }
 

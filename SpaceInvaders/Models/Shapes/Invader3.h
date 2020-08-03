@@ -8,7 +8,6 @@ public:
 	Invader3(float width, float height, sf::Vector2f position)
 		: Invader(width, height, position)
 	{
-		Type = ShipType::Invader3;
 		MaxHP = 3;
 		HP = static_cast<float>(MaxHP);
 		Damage = 1;
