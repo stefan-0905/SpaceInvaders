@@ -145,13 +145,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Models\ECS\APlayer.cpp" />
+    <ClCompile Include="Models\ECS\AProjectile.cpp" />
     <ClCompile Include="Models\ECS\Manager.cpp" />
     <ClCompile Include="Models\ECS\AActor.cpp" />
     <ClCompile Include="Models\CollisionDetector.cpp" />
     <ClCompile Include="Models\ECS\UCombatComponent.cpp" />
     <ClCompile Include="Models\ECS\UHealthComponent.cpp" />
     <ClCompile Include="Models\ECS\UHealthIndicatorComponent.cpp" />
+    <ClCompile Include="Models\ECS\UPlayerMovementComponent.cpp" />
     <ClCompile Include="Models\ECS\UPositionComponent.cpp" />
+    <ClCompile Include="Models\ECS\UProjectileMovementComponent.cpp" />
     <ClCompile Include="Models\Shapes\Bullet.cpp" />
     <ClCompile Include="Models\Utils.cpp" />
     <ClCompile Include="Models\Utils.h" />
@@ -174,6 +178,8 @@
     <ClCompile Include="Models\ECS\USpriteComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Models\ECS\AProjectile.h" />
+    <ClInclude Include="Models\ECS\APlayer.h" />
     <ClInclude Include="Models\ECS\Manager.h" />
     <ClInclude Include="Models\ECS\AActor.h" />
     <ClInclude Include="Models\CollisionDetector.h" />
@@ -182,7 +188,9 @@
     <ClInclude Include="Models\ECS\UCombatComponent.h" />
     <ClInclude Include="Models\ECS\UHealthComponent.h" />
     <ClInclude Include="Models\ECS\UHealthIndicatorComponent.h" />
+    <ClInclude Include="Models\ECS\UPlayerMovementComponent.h" />
     <ClInclude Include="Models\ECS\UPositionComponent.h" />
+    <ClInclude Include="Models\ECS\UProjectileMovementComponent.h" />
     <ClInclude Include="Models\Shapes\Bazooker.h" />
     <ClInclude Include="Models\Shapes\Bullet.h" />
     <ClInclude Include="UI.hpp" />

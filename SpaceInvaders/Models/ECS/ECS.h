@@ -58,11 +58,11 @@ private:
 	ComponentBitSet ComponentBitSet;
 
 public:
-	void Tick(float DeltaTime)
+	virtual void Tick(float DeltaTime)
 	{
 		for (auto& c : Components) c->Tick(DeltaTime);
 	}
-	void Draw(sf::RenderWindow& window)
+	virtual void Draw(sf::RenderWindow& window)
 	{
 		for (auto& c : Components) c->Draw(window);
 	}

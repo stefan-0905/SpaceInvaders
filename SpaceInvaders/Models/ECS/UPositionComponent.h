@@ -19,4 +19,6 @@ public:
 
 	/// Setters
 	void SetPosition(float xpos, float ypos);
+
+	void Move(float xoffset, float yoffset);
 };

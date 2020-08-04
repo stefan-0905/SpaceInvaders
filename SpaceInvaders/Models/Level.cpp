@@ -1,5 +1,4 @@
 #include "InvaderArmy.h"
-//TODO Create One File for all invader includes
 #include "Invaders.hpp"
 
 #include "Level.h"

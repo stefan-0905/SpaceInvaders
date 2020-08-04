@@ -24,5 +24,7 @@ public:
 	virtual void Init() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void Draw(sf::RenderWindow& window) override;
+
+	void SetTexture(const char* path);
 };
 

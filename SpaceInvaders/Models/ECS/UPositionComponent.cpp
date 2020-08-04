@@ -16,3 +16,9 @@ void UPositionComponent::SetPosition(float xpos, float ypos)
 	x = xpos;
 	y = ypos;
 }
+
+void UPositionComponent::Move(float xoffset, float yoffset)
+{
+	x += xoffset;
+	y += yoffset;
+}
