@@ -10,7 +10,7 @@ APlayer::APlayer(float width, float height, const char* path, Manager* manager)
 	: AActor(width, height, path)
 {
 	AddComponent<UHealthComponent>(3.f);
-	AddComponent<UHealthIndicatorComponent>();
+	//AddComponent<UHealthIndicatorComponent>();
 	AddComponent<UCombatComponent>(manager);
 	AddComponent<UPlayerMovementComponent>();
 }

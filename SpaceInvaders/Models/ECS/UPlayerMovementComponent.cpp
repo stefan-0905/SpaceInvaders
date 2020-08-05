@@ -2,6 +2,7 @@
 #include "UPositionComponent.h"
 #include "UCombatComponent.h"
 #include "UPlayerMovementComponent.h"
+#include "../../Constants.h"
 
 UPlayerMovementComponent::UPlayerMovementComponent()
 {
@@ -20,7 +21,9 @@ void UPlayerMovementComponent::Tick(float DeltaTime)
     if (!PositionComponent) return;
 
     float acceleration = 0; // No key pressed
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) acceleration = -Acceleration;
+    if((sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) && (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)))
+    { }
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) acceleration = -Acceleration;
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) acceleration = Acceleration;
 
     // If no key pressed, gradually stop player movement
@@ -51,8 +54,8 @@ void UPlayerMovementComponent::Tick(float DeltaTime)
     if (PositionComponent->X() < 50.f)
         PositionComponent->SetPosition(50.f, PositionComponent->Y());
 
-    if (PositionComponent->X() > 974)
-        PositionComponent->SetPosition(974, PositionComponent->Y());
+    if (PositionComponent->X() > WINDOW_SIZE_X - 50.f)
+        PositionComponent->SetPosition(WINDOW_SIZE_X - 50.f, PositionComponent->Y());
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
     {

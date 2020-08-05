@@ -145,11 +145,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Models\ECS\AInvader.cpp" />
     <ClCompile Include="Models\ECS\APlayer.cpp" />
     <ClCompile Include="Models\ECS\AProjectile.cpp" />
     <ClCompile Include="Models\ECS\Manager.cpp" />
     <ClCompile Include="Models\ECS\AActor.cpp" />
     <ClCompile Include="Models\CollisionDetector.cpp" />
+    <ClCompile Include="Models\ECS\UAIMovementComponent.cpp" />
     <ClCompile Include="Models\ECS\UCombatComponent.cpp" />
     <ClCompile Include="Models\ECS\UHealthComponent.cpp" />
     <ClCompile Include="Models\ECS\UHealthIndicatorComponent.cpp" />
@@ -180,11 +182,13 @@
   <ItemGroup>
     <ClInclude Include="Models\ECS\AProjectile.h" />
     <ClInclude Include="Models\ECS\APlayer.h" />
+    <ClInclude Include="Models\ECS\AInvader.h" />
     <ClInclude Include="Models\ECS\Manager.h" />
     <ClInclude Include="Models\ECS\AActor.h" />
     <ClInclude Include="Models\CollisionDetector.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Models\ECS\ECS.h" />
+    <ClInclude Include="Models\ECS\UAIMovementComponent.h" />
     <ClInclude Include="Models\ECS\UCombatComponent.h" />
     <ClInclude Include="Models\ECS\UHealthComponent.h" />
     <ClInclude Include="Models\ECS\UHealthIndicatorComponent.h" />
@@ -193,6 +197,7 @@
     <ClInclude Include="Models\ECS\UProjectileMovementComponent.h" />
     <ClInclude Include="Models\Shapes\Bazooker.h" />
     <ClInclude Include="Models\Shapes\Bullet.h" />
+    <ClInclude Include="Spawner.h" />
     <ClInclude Include="UI.hpp" />
     <ClInclude Include="UI\CharacterSelectUI.h" />
     <ClInclude Include="Config.h" />

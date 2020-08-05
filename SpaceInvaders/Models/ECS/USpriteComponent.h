@@ -20,11 +20,11 @@ public:
 	USpriteComponent(float size_x, float size_y, const char* path = nullptr);
 
 	inline sf::Vector2f GetSize() const { return Body.getSize(); }
-
+	void SetSize(float width, float height);
 	virtual void Init() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void Draw(sf::RenderWindow& window) override;
 
-	void SetTexture(const char* path);
+	void SetTexture(const char* path = nullptr);
 };
 

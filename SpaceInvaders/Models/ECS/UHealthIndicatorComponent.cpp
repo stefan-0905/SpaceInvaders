@@ -26,7 +26,7 @@ void UHealthIndicatorComponent::Tick(float DeltaTime)
 	if (!ensure(HealthComponent) || !ensure(PositionComponent)) return;
 	
 	HealthText.setString(std::to_string((int)HealthComponent->GetHealth()) + "/" + std::to_string((int)HealthComponent->GetMaxHealth()));
-	HealthText.setPosition(PositionComponent->X() - SpriteComponent->GetSize().x / 2, PositionComponent->Y() - SpriteComponent->GetSize().y / 2 - CharacterSize);
+	HealthText.setPosition(PositionComponent->X() - SpriteComponent->GetSize().x / 2, PositionComponent->Y() - SpriteComponent->GetSize().y / 2 - CharacterSize*2);
 }
 
 void UHealthIndicatorComponent::Draw(sf::RenderWindow& window)
