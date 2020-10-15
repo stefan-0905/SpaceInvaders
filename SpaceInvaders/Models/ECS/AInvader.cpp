@@ -12,3 +12,16 @@ AInvader::AInvader(float xpos, float ypos, float moveRange)
 	AddComponent<UHealthComponent>(1.f);
 	AddComponent<UHealthIndicatorComponent>();
 }
+
+void AInvader::Destroy()
+{
+	if (HasComponent<UHealthComponent>())
+	{
+		GetComponent<UHealthComponent>().DecreaseHealth();
+		if (GetComponent<UHealthComponent>().IsKilled())
+		{
+			printf("Custom destroy");
+			Entity::Destroy();
+		}
+	}
+}

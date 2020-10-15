@@ -9,7 +9,7 @@ UCombatComponent::UCombatComponent(Manager* manager)
 	: m_Manager(manager)
 {
 	Damage = 1.f;
-	FiringFrequency = 1.f;
+	FiringFrequency = 0.2f;
 }
 
 void UCombatComponent::Init()
@@ -33,7 +33,7 @@ void UCombatComponent::Fire()
 		// Spawn projectile above player
 		float PlayerHeight = GetOwner()->GetComponent<USpriteComponent>().GetSize().y;
 
-		m_Manager->AddActor<AProjectile>(PositionComponent->X(), PositionComponent->Y() - PlayerHeight / 2);
+		m_Manager->AddActor<AProjectile>(PositionComponent->X(), PositionComponent->Y() - PlayerHeight);
 		OverallTime = 0.f;
 	}
 }

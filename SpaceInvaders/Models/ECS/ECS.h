@@ -68,11 +68,11 @@ public:
 	}
 
 	bool IsActive() const { return Active; }
-	void Destroy() { Active = false; }
+	virtual void Destroy() { Active = false; }
 
 	template <typename T> bool HasComponent() const
 	{
-		return ComponentBitSet[GetComponentTypeID<T>];
+		return ComponentBitSet[GetComponentTypeID<T>()];
 	}
 
 	template <typename T, typename... TArgs> 

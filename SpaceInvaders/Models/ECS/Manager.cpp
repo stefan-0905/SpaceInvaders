@@ -1,5 +1,8 @@
 #include "AActor.h"
 #include "Manager.h"
+#include "UColliderComponent.h"
+#include "CollisionDetector.h"
+#include "UHealthComponent.h"
 
 void Manager::Tick(float DeltaTime)
 {
@@ -8,6 +11,8 @@ void Manager::Tick(float DeltaTime)
 	/*for (auto& e : Entities) {
 		if(e) e->Tick(DeltaTime);
 	}*/
+
+	CollisionDetector::CheckCollision(&Entities);
 }
 void Manager::Draw(sf::RenderWindow& window)
 {

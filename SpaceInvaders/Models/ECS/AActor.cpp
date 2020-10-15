@@ -3,6 +3,7 @@
 #include "../../Constants.h"
 
 #include "AActor.h"
+#include "UColliderComponent.h"
 
 AActor::AActor()
 	: Entity()
@@ -16,6 +17,7 @@ AActor::AActor(float width, float height, const char* path)
 {
 	AddComponent<UPositionComponent>(WINDOW_SIZE_X / 2, (float)WINDOW_SIZE_Y - 50);
 	AddComponent<USpriteComponent>(width, height, path);
+	AddComponent<UColliderComponent>(width, height);
 }
 
 AActor::AActor(float width, float height, const char* path, float xpos, float ypos)
@@ -23,4 +25,5 @@ AActor::AActor(float width, float height, const char* path, float xpos, float yp
 {
 	AddComponent<UPositionComponent>(xpos, ypos);
 	AddComponent<USpriteComponent>(width, height, path);
+	AddComponent<UColliderComponent>(width, height);
 }

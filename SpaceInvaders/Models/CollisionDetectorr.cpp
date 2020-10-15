@@ -2,21 +2,22 @@
 #include "InvaderArmy.h"
 #include "Shapes/Invader.h"
 
-#include "CollisionDetector.h"
+#include "CollisionDetectorr.h"
+#include "ECS\CollisionDetector.h"
 
-CollisionDetector::CollisionDetector(Player* mPlayer, InvaderArmy* mArmy)
+CollisionDetectorr::CollisionDetectorr(Player* mPlayer, InvaderArmy* mArmy)
 {
 	m_Player = mPlayer;
 	m_Army = mArmy;
 }
 
-void CollisionDetector::Tick(float deltaTime)
+void CollisionDetectorr::Tick(float deltaTime)
 {
 	CheckEnemyBulletCollision();
 	CheckPlayerBulletCollision();
 }
 
-void CollisionDetector::CheckEnemyBulletCollision()
+void CollisionDetectorr::CheckEnemyBulletCollision()
 {
 	std::vector<Bullet>* EnemyBullets = m_Army->GetBullets();
 	for (unsigned int i = 0; i < EnemyBullets->size(); i++)
@@ -30,7 +31,7 @@ void CollisionDetector::CheckEnemyBulletCollision()
 	}
 }
 
-void CollisionDetector::CheckPlayerBulletCollision()
+void CollisionDetectorr::CheckPlayerBulletCollision()
 {
 	auto playerBullets = m_Player->GetBullets();
 	for (unsigned int i = 0; i < playerBullets->size(); i++)

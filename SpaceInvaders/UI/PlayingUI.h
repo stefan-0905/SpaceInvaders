@@ -3,7 +3,7 @@
 #include "../Models/Player.h"
 #include "../Models/Controllers/PlayerController.h"
 #include "../Models/Controllers/PlayerAIController.h"
-#include "../Models/CollisionDetector.h"
+#include "../Models/CollisionDetectorr.h"
 #include "../Models/Level.h"
 
 #include "UIBase.h"
@@ -19,7 +19,7 @@ public:
 	InvaderArmy Army;
 	PlayerAIController m_AIController;
 	Level m_Level;
-	CollisionDetector m_Detector;
+	CollisionDetectorr m_Detector;
 
 	Game* m_Game;
 

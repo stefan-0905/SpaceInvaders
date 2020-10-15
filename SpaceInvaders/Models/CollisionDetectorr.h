@@ -3,13 +3,13 @@
 class Player;
 class InvaderArmy;
 
-class CollisionDetector
+class CollisionDetectorr
 {
 protected:
 	Player* m_Player;
 	InvaderArmy* m_Army;
 public:
-	CollisionDetector(Player* mPlayer, InvaderArmy* mArmy);
+	CollisionDetectorr(Player* mPlayer, InvaderArmy* mArmy);
 
 	void Tick(float deltaTime);
 
