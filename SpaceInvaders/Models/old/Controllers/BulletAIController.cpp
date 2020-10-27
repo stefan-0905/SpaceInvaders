@@ -1,6 +1,6 @@
 #include "BulletAIController.h"
 
-#include "../../Constants.h"
+#include "../../../Constants.h"
 
 BulletAIController::BulletAIController(std::vector<Bullet>* bullets)
 	: Bullets(bullets)

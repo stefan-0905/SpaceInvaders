@@ -2,7 +2,7 @@
 #include "SFML/Graphics/Texture.hpp"
 
 #include "Shape.h"
-#include "../Collider.h"
+#include "../../Collider.h"
 
 Shape::Shape(float width, float height)
 	: Size(width, height), Body(Size)

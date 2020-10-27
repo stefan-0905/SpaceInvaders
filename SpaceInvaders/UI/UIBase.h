@@ -1,5 +1,6 @@
 #pragma once
-#include <SFML\Graphics\RenderWindow.hpp>
+
+#include "SFML/Graphics/RenderWindow.hpp"
 
 class UIBase
 {

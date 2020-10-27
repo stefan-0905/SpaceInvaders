@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Shapes/Slinger.h"
-#include "Shapes/Bazooker.h"
-#include "Shapes/Bullet.h"
-#include "Shapes/Invader1.h"
-#include "Shapes/Invader2.h"
-#include "Shapes/Invader3.h"
+#include "old/Shapes/Slinger.h"
+#include "old/Shapes/Bazooker.h"
+#include "old/Shapes/Bullet.h"
+#include "old/Shapes/Invader1.h"
+#include "old/Shapes/Invader2.h"
+#include "old/Shapes/Invader3.h"
