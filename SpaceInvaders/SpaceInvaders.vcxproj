@@ -163,7 +163,7 @@
     <ClCompile Include="Models\old\Shapes\Bullet.cpp" />
     <ClCompile Include="Models\Utils.cpp" />
     <ClCompile Include="Models\Utils.h" />
-    <ClCompile Include="UI\CharacterSelectUI.cpp" />
+    <ClCompile Include="UI\CharacterSelect\CharacterSelectUI.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Models\old\Controllers\BulletAIController.cpp" />
     <ClCompile Include="Models\old\Controllers\PlayerAIController.cpp" />
@@ -174,6 +174,11 @@
     <ClCompile Include="Models\old\Controllers\PlayerController.cpp" />
     <ClCompile Include="Models\old\Shapes\Shape.cpp" />
     <ClCompile Include="Models\old\Shapes\Ship.cpp" />
+    <ClCompile Include="UI\CharacterSelect\SImage.cpp" />
+    <ClCompile Include="UI\CharacterSelect\SSelector.cpp" />
+    <ClCompile Include="UI\CharacterSelect\SStaticText.cpp" />
+    <ClCompile Include="UI\CharacterSelect\USelectedStateComponent.cpp" />
+    <ClCompile Include="UI\CharacterSelect\USelectorMovementComponent.cpp" />
     <ClCompile Include="UI\OverUI.cpp" />
     <ClCompile Include="Models\Player.cpp" />
     <ClCompile Include="UI\Playing\HPWidget.cpp" />
@@ -209,7 +214,7 @@
     <ClInclude Include="Models\old\Shapes\Bullet.h" />
     <ClInclude Include="Spawner.h" />
     <ClInclude Include="UI.hpp" />
-    <ClInclude Include="UI\CharacterSelectUI.h" />
+    <ClInclude Include="UI\CharacterSelect\CharacterSelectUI.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Models\old\Controllers\BulletAIController.h" />
@@ -227,6 +232,12 @@
     <ClInclude Include="Models\old\Shapes\Shape.h" />
     <ClInclude Include="Models\old\Shapes\Slinger.h" />
     <ClInclude Include="Models\Ships.hpp" />
+    <ClInclude Include="UI\CharacterSelect\SelectState.h" />
+    <ClInclude Include="UI\CharacterSelect\USelectedStateComponent.h" />
+    <ClInclude Include="UI\CharacterSelect\SImage.h" />
+    <ClInclude Include="UI\CharacterSelect\SSelector.h" />
+    <ClInclude Include="UI\CharacterSelect\SStaticText.h" />
+    <ClInclude Include="UI\CharacterSelect\USelectorMovementComponent.h" />
     <ClInclude Include="UI\OverUI.h" />
     <ClInclude Include="Models\Player.h" />
     <ClInclude Include="Models\old\Shapes\Ship.h" />

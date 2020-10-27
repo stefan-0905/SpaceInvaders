@@ -33,9 +33,6 @@
     <ClCompile Include="EventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\CharacterSelectUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\OverUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -138,6 +135,24 @@
     <ClCompile Include="UI\StartScreen\USelectController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UI\CharacterSelect\CharacterSelectUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\CharacterSelect\SImage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\CharacterSelect\SStaticText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\CharacterSelect\SSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\CharacterSelect\USelectorMovementComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\CharacterSelect\USelectedStateComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -171,9 +186,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\CharacterSelectUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\OverUI.h">
@@ -300,6 +312,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\StartScreen\USelectController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CharacterSelect\CharacterSelectUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CharacterSelect\SImage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CharacterSelect\SStaticText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CharacterSelect\SSelector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CharacterSelect\USelectorMovementComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CharacterSelect\USelectedStateComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\CharacterSelect\SelectState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

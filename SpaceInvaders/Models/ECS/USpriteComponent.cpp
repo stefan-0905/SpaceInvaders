@@ -7,9 +7,9 @@ float Default_Width = 50.f;
 USpriteComponent::USpriteComponent()
 	: Body(sf::Vector2f(Default_Width, Default_Width))
 {
-	Body.setOrigin(Default_Width / 2, Default_Width / 2);
 	Body.setFillColor(sf::Color::White);
 	SetTexture();
+	Body.setOrigin(Body.getGlobalBounds().width / 2, Body.getGlobalBounds().height / 2);
 }
 
 USpriteComponent::USpriteComponent(float size_x, float size_y, const char* path)

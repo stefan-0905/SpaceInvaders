@@ -25,17 +25,18 @@ void USelectController::Tick(float DeltaTime)
 	else if (sf::Keyboard::isKeyPressed(StartKey))
 	{
 		if (TextComponent->GetTitle() == L"Start")
-			TextComponent->IsSelected(true);
+			TextComponent->SetColor(sf::Color::Yellow);
 		if (TextComponent->GetTitle() == L"Quit")
-			TextComponent->IsSelected(false);
+			TextComponent->SetColor(sf::Color::White);
 
 		*ResultSelector = true;
 	}
 	else if (sf::Keyboard::isKeyPressed(QuitKey)) {
 		if (TextComponent->GetTitle() == L"Start")
-			TextComponent->IsSelected(false);
+			TextComponent->SetColor(sf::Color::White);
+
 		if (TextComponent->GetTitle() == L"Quit")
-			TextComponent->IsSelected(true);
+			TextComponent->SetColor(sf::Color::Yellow);
 
 		*ResultSelector = false;
 	}

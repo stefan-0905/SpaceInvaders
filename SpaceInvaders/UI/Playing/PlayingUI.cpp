@@ -6,6 +6,7 @@
 #include "../../Spawner.h"
 
 #include "HPWidget.h"
+#include "../CharacterSelect/SelectState.h"
 
 #include "PlayingUI.h"
 
@@ -62,9 +63,19 @@ void PlayingUI::Draw(sf::RenderWindow& window)
     window.draw(HpText);
 }
 
-void PlayingUI::SetShip(Ship* ship)
+void PlayingUI::SetShip(SelectState state)
 {
-    //m_Player.SetShip(ship);
+    switch (state)
+    {
+    case SelectState::Slinger:
+        mPl.UpdateTexture("res/Slinger.png");
+        break;
+    case SelectState::Bazooker:
+        mPl.UpdateTexture("res/Bazooker.png");
+        break;
+    default:
+        break;
+    }
 }
 
 void PlayingUI::RestartGame()

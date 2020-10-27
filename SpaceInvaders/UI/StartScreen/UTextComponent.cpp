@@ -3,10 +3,9 @@
 #include "../../Config.h"
 #include "UTextComponent.h"
 
-UTextComponent::UTextComponent(const wchar_t* title, bool selected)
+UTextComponent::UTextComponent(const wchar_t* title)
 {
 	Title = title;
-	Selected = selected;
 
 	TextBox.setFont(Config::GetFont());
 	TextBox.setCharacterSize(CharacterSize);
@@ -24,17 +23,6 @@ void UTextComponent::Init()
 void UTextComponent::Tick(float DeltaTime)
 {
 	if (!ensure(PositionComponent)) return;
-
-	if (Selected)
-	{
-		TextBox.setFillColor(sf::Color::Yellow);
-		TextBox.setStyle(sf::Text::Underlined);
-	}
-	else
-	{
-		TextBox.setFillColor(sf::Color::White);
-		TextBox.setStyle(sf::Text::Regular);
-	}
 }
 
 void UTextComponent::Draw(sf::RenderWindow& window)
@@ -42,7 +30,7 @@ void UTextComponent::Draw(sf::RenderWindow& window)
 	window.draw(TextBox);
 }
 
-void UTextComponent::IsSelected(bool selected)
+void UTextComponent::SetColor(sf::Color color)
 {
-	Selected = selected;
+	TextBox.setFillColor(color);
 }

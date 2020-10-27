@@ -8,6 +8,7 @@
 class RenderWindow;
 class Game;
 class Ship;
+enum class SelectState;
 
 class PlayingUI : public UIBase
 {
@@ -27,7 +28,7 @@ public:
 	void Tick(float deltaTime) override;
 	void Draw(sf::RenderWindow& window) override;
 
-	void SetShip(Ship* ship);
+	void SetShip(SelectState state);
 	void RestartGame();
 };
 
