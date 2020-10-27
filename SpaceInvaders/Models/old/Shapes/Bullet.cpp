@@ -1,6 +1,6 @@
 
 #include "Bullet.h"
-#include "../../Config.h"
+#include "../../../Config.h"
 
 Bullet::Bullet(sf::Vector2f position, float damage, Direction moveDirection)
 	: Shape(2, 5), MoveDirection(moveDirection)

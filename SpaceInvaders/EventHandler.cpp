@@ -25,7 +25,7 @@ void EventHandler::Handle(sf::Event& ev)
     case sf::Event::MouseButtonPressed:
         if (ev.key.code == sf::Mouse::Left)
         {
-            m_Game->Playing.m_PlayerController.Fire();
+            //m_Game->Playing.m_PlayerController.Fire();
         }
         break;
     default:

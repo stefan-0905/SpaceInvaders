@@ -1,8 +1,8 @@
-#include "../InvaderArmy.h"
+#include "../../InvaderArmy.h"
 #include "../Shapes/Invader.h"
 #include "PlayerAIController.h"
 
-#include "../../Constants.h"
+#include "../../../Constants.h"
 
 PlayerAIController::PlayerAIController(InvaderArmy* army)
 	: Army(army), m_BulletAIController(Army->GetBullets())

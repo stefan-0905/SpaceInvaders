@@ -2,10 +2,12 @@
 #include <SFML\Graphics\Text.hpp>
 #include "../Constants.h"
 #include "UIBase.h"
+#include "../Models/old/Shapes/Shape.h"
 
 class Ship;
 class RenderWindow;
 class Texture;
+
 
 class CharacterSelectUI : public UIBase
 {

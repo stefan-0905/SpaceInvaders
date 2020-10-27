@@ -2,8 +2,13 @@
 
 #include "Config.h"
 #include "Constants.h"
+#include "Models/ECS/Manager.h"
 
-Game::Game(const sf::Vector2f playerSize)
+Game::Game(Manager& manager, const sf::Vector2f playerSize)
+    /*: StartScreen(manager.AddActor<StartScreenUI>()), 
+    Playing(manager.AddActor<PlayingUI>(playerSize, this)),
+    CharacterSelect(manager.AddActor< CharacterSelectUI>()),
+    Over(manager.AddActor<OverUI>())*/
     : Playing(playerSize, this)
 {
     State = GameState::StartScreen;

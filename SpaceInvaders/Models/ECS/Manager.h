@@ -15,6 +15,8 @@ private:
 public:
 	void Tick(float DeltaTime);
 	void Draw(sf::RenderWindow& window);
+	
+	//Empty managed entities
 	void Refresh();
 
 	template <typename T, typename... TArgs>
@@ -22,7 +24,6 @@ public:
 };
 
 template<typename T, typename... TArgs>
-//inline T& Manager::AddActor(float width, float height, const char* path)
 inline T& Manager::AddActor(TArgs&&... mArgs)
 {
 	T* e = new T(std::forward<TArgs>(mArgs)...);

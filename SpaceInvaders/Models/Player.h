@@ -2,7 +2,7 @@
 
 #include "SFML/System/Vector2.hpp"
 
-#include "Shapes/Bullet.h"
+#include "old/Shapes/Bullet.h"
 #include "InvaderArmy.h"
 #include "../Constants.h"
 

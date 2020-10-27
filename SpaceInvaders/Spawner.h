@@ -3,7 +3,6 @@
 #include "Models/ECS/AInvader.h"
 #include "Constants.h"
 
-
 class Spawner
 {
 public:
