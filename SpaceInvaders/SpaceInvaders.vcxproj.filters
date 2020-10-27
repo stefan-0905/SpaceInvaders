@@ -33,9 +33,6 @@
     <ClCompile Include="EventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\OverUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Models\ECS\UPositionComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,9 +129,6 @@
     <ClCompile Include="UI\StartScreen\UTextComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI\StartScreen\USelectController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="UI\CharacterSelect\CharacterSelectUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -151,6 +145,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UI\CharacterSelect\USelectedStateComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\StartScreen\USelectControllerComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\OverScreen\OverUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -186,9 +186,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI\OverUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI.hpp">
@@ -311,9 +308,6 @@
     <ClInclude Include="UI\StartScreen\UTextComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\StartScreen\USelectController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="UI\CharacterSelect\CharacterSelectUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -333,6 +327,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI\CharacterSelect\SelectState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\StartScreen\USelectControllerComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\OverScreen\OverUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

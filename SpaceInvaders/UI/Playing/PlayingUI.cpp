@@ -50,6 +50,7 @@ void PlayingUI::Tick(float deltaTime)
         m_Game->FinishGame(false);
     }
     else {
+        m_Game->FinishGame(true);
        /* if (m_Level.GetCurrentLevel() > Level::MaxLevel)
         {
             m_Game->FinishGame(true);

@@ -2,13 +2,8 @@
 
 #include "Config.h"
 #include "Constants.h"
-#include "Models/ECS/Manager.h"
 
-Game::Game(Manager& manager, const sf::Vector2f playerSize)
-    /*: StartScreen(manager.AddActor<StartScreenUI>()), 
-    Playing(manager.AddActor<PlayingUI>(playerSize, this)),
-    CharacterSelect(manager.AddActor< CharacterSelectUI>()),
-    Over(manager.AddActor<OverUI>())*/
+Game::Game(const sf::Vector2f playerSize)
     : Playing(playerSize, this)
 {
     State = GameState::StartScreen;
@@ -50,8 +45,8 @@ void Game::HandleStates(sf::Event event, sf::RenderWindow& window)
         break;
     case GameState::Over:
         Playing.RestartGame();
-        Over.AgainSelected ? State = GameState::Playing : State = GameState::StartScreen;
-        Over.AgainSelected ? CurrentUIState = &Playing : CurrentUIState = &StartScreen;
+        Over.Selected ? State = GameState::Playing : State = GameState::StartScreen;
+        Over.Selected ? CurrentUIState = &Playing : CurrentUIState = &StartScreen;
         break;
     default:
         break;

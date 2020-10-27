@@ -5,5 +5,5 @@
 class SButton : public SWidget
 {
 public:
-	SButton(const wchar_t* title, float xpos, float ypos, bool selected, bool* resultSelector);
+	SButton(const wchar_t* title, float xpos, float ypos, bool* resultSelector);
 };

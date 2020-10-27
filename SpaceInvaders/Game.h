@@ -2,8 +2,6 @@
 
 #include "UI.hpp"
 
-class Manager;
-
 enum class GameState
 {
 	StartScreen = 0, CharacterSelect, Playing, Over
@@ -22,7 +20,7 @@ private:
 	UIBase* CurrentUIState;
 
 public:
-	Game(Manager& manager, const sf::Vector2f playerSize);
+	Game(const sf::Vector2f playerSize);
 	~Game();
 
 	void Tick(float deltaTime);

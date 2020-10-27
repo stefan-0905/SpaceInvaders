@@ -1,6 +1,8 @@
-
 #include "../../Models/Utils.h"
 #include "../../Config.h"
+
+#include "../../Models/ECS/UPositionComponent.h"
+
 #include "UTextComponent.h"
 
 UTextComponent::UTextComponent(const wchar_t* title)
@@ -28,6 +30,11 @@ void UTextComponent::Tick(float DeltaTime)
 void UTextComponent::Draw(sf::RenderWindow& window)
 {
 	window.draw(TextBox);
+}
+
+void UTextComponent::UpdateText(const wchar_t* text)
+{
+	TextBox.setString(text);
 }
 
 void UTextComponent::SetColor(sf::Color color)

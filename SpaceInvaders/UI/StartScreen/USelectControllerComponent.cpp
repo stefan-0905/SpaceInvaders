@@ -1,41 +1,45 @@
 #include "UTextComponent.h"
 #include "SFML/Window/Keyboard.hpp"
 
-#include "USelectController.h"
+#include "../../Models/ECS/UPositionComponent.h"
 
-USelectController::USelectController(bool* resultSelector)
+#include "../../Constants.h"
+
+
+#include "USelectControllerComponent.h"
+
+USelectControllerComponent::USelectControllerComponent(bool* resultSelector)
 {
 	StartKey = sf::Keyboard::A;
 	QuitKey = sf::Keyboard::D;
 
 	ResultSelector = resultSelector;
-
 }
 
-void USelectController::Init()
+void USelectControllerComponent::Init()
 {
 	TextComponent = &GetOwner()->GetComponent<UTextComponent>();
 }
 
-void USelectController::Tick(float DeltaTime)
+void USelectControllerComponent::Tick(float DeltaTime)
 {
 	if ((sf::Keyboard::isKeyPressed(StartKey)) && (sf::Keyboard::isKeyPressed(QuitKey)))
 	{
 	}
 	else if (sf::Keyboard::isKeyPressed(StartKey))
 	{
-		if (TextComponent->GetTitle() == L"Start")
+		if(GetOwner()->GetComponent<UPositionComponent>().X() < WINDOW_SIZE_X / 2)
 			TextComponent->SetColor(sf::Color::Yellow);
-		if (TextComponent->GetTitle() == L"Quit")
+		else
 			TextComponent->SetColor(sf::Color::White);
 
 		*ResultSelector = true;
 	}
 	else if (sf::Keyboard::isKeyPressed(QuitKey)) {
-		if (TextComponent->GetTitle() == L"Start")
+		
+		if (GetOwner()->GetComponent<UPositionComponent>().X() < WINDOW_SIZE_X / 2)
 			TextComponent->SetColor(sf::Color::White);
-
-		if (TextComponent->GetTitle() == L"Quit")
+		else
 			TextComponent->SetColor(sf::Color::Yellow);
 
 		*ResultSelector = false;

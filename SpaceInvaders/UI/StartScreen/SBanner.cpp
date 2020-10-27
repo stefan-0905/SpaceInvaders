@@ -9,5 +9,5 @@
 SBanner::SBanner()
 {
 	AddComponent<UPositionComponent>(WINDOW_SIZE_X / 2, WINDOW_SIZE_Y / 2);
-	AddComponent<USpriteComponent>(200, 100, "res/title.jpg");
+	AddComponent<USpriteComponent>(200.0F, 100.0F, "res/title.jpg");
 }

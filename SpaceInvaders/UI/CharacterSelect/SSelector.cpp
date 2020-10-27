@@ -10,7 +10,7 @@
 SSelector::SSelector()
 {
 	AddComponent<UPositionComponent>(WINDOW_SIZE_X / 2 - 50, WINDOW_SIZE_Y / 2 + 100);
-	AddComponent<USpriteComponent>(50, 5);
+	AddComponent<USpriteComponent>(50.F, 5.F);
 	AddComponent<USelectedStateComponent>();
 	AddComponent<USelectorMovementComponent>();
 }

@@ -8,7 +8,7 @@ class Spawner
 public:
 	static void Spawn(size_t n, Manager* manager)
 	{
-		int offset = WINDOW_SIZE_X - 100 - INVADERS_PER_ROW * 40;
+		float offset = WINDOW_SIZE_X - 100.f - INVADERS_PER_ROW * 40;
 		auto startX = 30.f;
 		auto startY = 50.f;
 
@@ -24,7 +24,7 @@ public:
 
 			startX += 40.f;
 
-			manager->AddActor<AInvader>(startX, startY + 50.f * Row, (float)offset);
+			manager->AddActor<AInvader>(startX, startY + 50.f * Row, offset);
 		}
 
 	}

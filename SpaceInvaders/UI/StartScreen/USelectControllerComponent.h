@@ -5,7 +5,7 @@
 
 class UTextComponent;
 
-class USelectController : public Component
+class USelectControllerComponent : public Component
 {
 private:
 	UTextComponent* TextComponent;
@@ -15,7 +15,7 @@ private:
 	bool* ResultSelector;
 
 public:
-	USelectController(bool* resultSelector);
+	USelectControllerComponent(bool* resultSelector);
 
 	virtual void Init() override;
 	virtual void Tick(float DeltaTime) override;
