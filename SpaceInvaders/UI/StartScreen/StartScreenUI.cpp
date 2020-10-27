@@ -1,0 +1,33 @@
+#include "SFML/Graphics/RenderWindow.hpp"
+
+#include "../../Constants.h"
+#include "../../Config.h"
+
+#include "SBanner.h"
+#include "SButton.h"
+#include "../../Models/ECS/UPositionComponent.h"
+
+#include "StartScreenUI.h"
+
+StartScreenUI::StartScreenUI()
+{
+    Banner = &manager.AddActor<SBanner>();
+    manager.AddActor<SButton>(L"Start", Banner->GetComponent<UPositionComponent>().X() - 50, Banner->GetComponent<UPositionComponent>().Y() + 100, true, &StartSelected);
+    manager.AddActor<SButton>(L"Quit", Banner->GetComponent<UPositionComponent>().X() + 50, Banner->GetComponent<UPositionComponent>().Y() + 100, false, &StartSelected);
+
+    StartSelected = true;
+}
+
+StartScreenUI::~StartScreenUI()
+{
+}
+
+void StartScreenUI::Tick(float deltaTime)
+{
+    manager.Tick(deltaTime);
+}
+
+void StartScreenUI::Draw(sf::RenderWindow& window)
+{
+    manager.Draw(window);
+}

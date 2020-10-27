@@ -2,7 +2,7 @@
 
 #include "../Models/ECS/ECS.h"
 
-class Widget : public Entity
+class SWidget : public Entity
 {
 
 };

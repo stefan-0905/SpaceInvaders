@@ -1,21 +1,23 @@
 #pragma once
+#include "../../Models/ECS/ECS.h"
+#include "../../Models/ECS/Manager.h"
 
-#include "UIBase.h"
+#include "../UIBase.h"
 #include "SFML/Graphics/Text.hpp"
 #include "SFML/Graphics/Texture.hpp"
 #include "SFML/Graphics/RectangleShape.hpp"
 
 class RenderWindow;
+class SBanner;
 
 class StartScreenUI : public UIBase
 {
 public:
 	bool StartSelected;
 private:
-	sf::RectangleShape Banner;
-	sf::Texture BannerTexture;
-	sf::Text StartButton;
-	sf::Text ExitButton;
+	Manager manager;
+
+	SBanner* Banner;
 
 public:
 	StartScreenUI();
@@ -23,11 +25,4 @@ public:
 
 	void Tick(float deltaTime) override;
 	void Draw(sf::RenderWindow& window) override;
-
-private:
-	void InitStartButton();
-	void InitExitButton();
-	void InitBanner();
-	void SelectStart();
-	void SelectExit();
 };

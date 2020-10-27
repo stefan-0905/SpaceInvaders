@@ -180,8 +180,12 @@
     <ClCompile Include="UI\Playing\UMainLifeIndicatorComponent.cpp" />
     <ClCompile Include="UI\Playing\PlayingUI.cpp" />
     <ClCompile Include="SpaceInvaders.cpp" />
-    <ClCompile Include="UI\StartScreenUI.cpp" />
+    <ClCompile Include="UI\StartScreen\SBanner.cpp" />
+    <ClCompile Include="UI\StartScreen\SButton.cpp" />
+    <ClCompile Include="UI\StartScreen\StartScreenUI.cpp" />
     <ClCompile Include="Models\ECS\USpriteComponent.cpp" />
+    <ClCompile Include="UI\StartScreen\USelectController.cpp" />
+    <ClCompile Include="UI\StartScreen\UTextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Models\ECS\AProjectile.h" />
@@ -230,10 +234,14 @@
     <ClInclude Include="UI\Playing\UMainLifeIndicatorComponent.h" />
     <ClInclude Include="UI\Playing\PlayingUI.h" />
     <ClInclude Include="SpaceInvaders.h" />
-    <ClInclude Include="UI\StartScreenUI.h" />
+    <ClInclude Include="UI\StartScreen\SBanner.h" />
+    <ClInclude Include="UI\StartScreen\SButton.h" />
+    <ClInclude Include="UI\StartScreen\StartScreenUI.h" />
+    <ClInclude Include="UI\StartScreen\USelectController.h" />
+    <ClInclude Include="UI\StartScreen\UTextComponent.h" />
     <ClInclude Include="UI\UIBase.h" />
     <ClInclude Include="Models\ECS\USpriteComponent.h" />
-    <ClInclude Include="UI\Widget.h" />
+    <ClInclude Include="UI\SWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
